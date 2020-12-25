@@ -19,11 +19,13 @@ gem 'holiday_japan'
 gem 'faraday'
 gem 'react-rails'
 gem 'webpacker'
-gem 'rspec-rails'
+#gem 'rspec-rails' 
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
+  gem 'rspec-rails' 
+  gem 'rails-controller-testing', '1.0.2'
 end
 
 group :development do
