@@ -13,6 +13,7 @@ class LoginController < ApplicationController
     mail=params[:mail]
     password=params[:password]
     @user=User.find_by(email:mail)
+    @chatwork = InquiryChatwork.new
     if @user and @user.authenticate(password)
       cookies[:userid] = {:value => @user.id, :expires => 5.days.from_now } 
       cookies.signed[:secret] = {
@@ -20,10 +21,10 @@ class LoginController < ApplicationController
       :expires => 5.days.from_now
      }
       flash[:success]="ログインに成功しました"
-      @chatwork = InquiryChatwork.new
       @chatwork.push_chatwork_message(@user,2)
       redirect_to '/'
     else
+      @chatwork.push_chatwork_message(@user,3)
       flash[:warning]="ログインに失敗しました"
       redirect_to login_index_path
     end
