@@ -3,8 +3,9 @@
   仕掛一覧
 <% else %>  
   完了一覧
-<% end %>
+<% end %> 
 </div>
+<h2><%= @imageauth.auth_dis %></h2>
 <div><%= react_component("HelloWorld", { greeting:"" }) %></div> 
 <div style="margin-bottom:10px"><%=render partial: 'common/form' %></div>
 <button class="btn btn-primary"  data-toggle="modal" data-target="#modal-sa">
