@@ -7,7 +7,6 @@ class TodosController < ApplicationController
   require 'active_support/core_ext/date'
 
   def index
-    @imageauth = ImageAuth.new(2)
     if params[:finished] == "true"
       @todos = Todo.where(finished:true).where(user_id:@userid).order(finishday: "DESC").paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
       @kubun = 2

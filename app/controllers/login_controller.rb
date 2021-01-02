@@ -1,9 +1,12 @@
 class LoginController < ApplicationController
   def index
-    
+    num = rand(0..1)
+    @imageauth = ImageAuth.new(num)
+    @image = @imageauth.auth_dis
   end
+
   def new
-    @user=User.new()
+    @user=User.new()   
   end
 
   def create

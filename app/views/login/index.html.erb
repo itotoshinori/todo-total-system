@@ -5,9 +5,12 @@
     <%= text_field_tag :mail %><br><br>
     <%= label_tag :パスワード %><br>
     <%= password_field_tag :password %><br><br>
+    <%= label_tag :画像のテキスト %><br>
+    <%= text_field_tag :image_word %><br><br>
+    <img src="/image_auth/<%= @image %>"><br><br>
     <%= submit_tag "実行" %>
   <% else %>
-    <%= submit_tag "ログアウト" %>
+    <%= submit_tag "ログアウト" , class: "btn btn-success" %>
     <%=link_to "新規ユーザー登録","/user/new"%>
   <% end %><br>
 <% end %>
