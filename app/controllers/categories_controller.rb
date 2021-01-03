@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
    before_action :userid_set
+   before_action :password_repair
 
   def index
     categories = Category.joins(:todo).where('user_id = ?',@userid).order(:category_id)

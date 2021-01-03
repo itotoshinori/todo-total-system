@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   helper_method :current_user
   require 'date'
+  before_action :current_user_set, only: [:password_repair,:unless_user,:unless_admin_user]
 
   def userid_set
     if cookies[:userid].present?
@@ -14,23 +15,31 @@ class ApplicationController < ActionController::Base
       :value => password,
       :expires => 5.days.from_now
      }
+      @current_user = User.find(cookies[:userid].to_i)
     else
       redirect_to login_index_path
     end
   end
 
+  def password_repair
+    if @current_user.present?
+      if @current_user.authenticate("password") 
+        flash[:danger] = "パスワードを変更して下さい"
+        redirect_to edit_user_path @current_user.id
+      end
+    end
+  end
+
   def unless_user
-    user = User.find(cookies[:userid].to_i)
-    unless user.authenticate(cookies.signed[:secret])
+    unless @current_user.authenticate(cookies.signed[:secret])
       cookies.delete :userid
       redirect_to login_index_path
     end
   end
 
   def unless_admin_user
-    if cookies[:userid].present?
-      user = User.find(cookies[:userid].to_i)
-      redirect_to('/login/index') if user.id != 1
+    if @current_user.present?
+      redirect_to('/login/index') if @current_user.id != 1
     end
   end
 
@@ -63,5 +72,12 @@ class ApplicationController < ActionController::Base
       placecode = user.placecode
       @placename = Place.find_by(code:placecode).name
       @weather = Weather.new(placecode)
+    end
+    
+    private
+    def current_user_set
+      if cookies[:userid].present?
+        @current_user = User.find(cookies[:userid].to_i)
+      end
     end
 end

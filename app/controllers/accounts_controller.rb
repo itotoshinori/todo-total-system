@@ -2,6 +2,7 @@ class AccountsController < ApplicationController
   protect_from_forgery :except => [:itemindex,:itemaggregateyear]
   require 'date'
   before_action :userid_set,   only: [:index,:itemaggregate,:itemindex,:accountcsvexport,:itemaggregateyear,:monthlychangesaccount]
+  before_action :password_repair
   include ApplicationHelper
   
   def index

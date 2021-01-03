@@ -1,5 +1,6 @@
 class ToexportController < ApplicationController
   before_action :userid_set
+  before_action :password_repair
   before_action :unless_user,  only: [:index,:indexfinished,:show,:edit,:schedule]
   require 'active_support/core_ext/date'
 

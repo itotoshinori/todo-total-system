@@ -2,7 +2,7 @@ class ImageAuth
   def initialize(num)
     @num = num
     array = [
-      ["4I3hw@65!", "l1.jpg"], 
+      ["4l3hw@65!", "l1.jpg"], 
       ["3kR23*$2", "l2.jpg"], 
       ["5*+75RtY&", "l3.gif"]
     ]
