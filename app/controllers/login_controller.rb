@@ -1,6 +1,6 @@
 class LoginController < ApplicationController
   def index
-    @num = rand(0..2)
+    @num = rand(0..5)
     @imageauth = ImageAuth.new(@num)
     @image = @imageauth.auth_dis
   end
