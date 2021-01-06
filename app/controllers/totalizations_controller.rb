@@ -1,5 +1,6 @@
 class TotalizationsController < ApplicationController
   before_action :userid_set
+  before_action :password_repair
   before_action :data_set
   before_action :date_setteing
 

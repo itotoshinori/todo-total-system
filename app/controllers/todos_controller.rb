@@ -1,13 +1,13 @@
 class TodosController < ApplicationController
   #protect_from_forgery with: :exception
   before_action :userid_set
+  before_action :password_repair
   before_action :unless_user,  only: [:index,:indexfinished,:show,:edit,:schedule]
   before_action :timeselect,   only: [:new,:create,:edit,:update,:index,:searchresult,:research]
   before_action :place_setting, only: [:index]
   require 'active_support/core_ext/date'
 
   def index
-    @imageauth = ImageAuth.new(2)
     if params[:finished] == "true"
       @todos = Todo.where(finished:true).where(user_id:@userid).order(finishday: "DESC").paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
       @kubun = 2

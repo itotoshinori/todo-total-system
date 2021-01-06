@@ -1,5 +1,6 @@
 class TargetsController < ApplicationController
   before_action :userid_set
+  before_action :password_repair
   before_action :data_set
   before_action :setting  
   protect_from_forgery with: :exception

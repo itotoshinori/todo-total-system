@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
   protect_from_forgery with: :exception
   before_action :userid_set
+  before_action :password_repair
   before_action :unless_user
   before_action :timeselect
   require 'active_support/core_ext/date'

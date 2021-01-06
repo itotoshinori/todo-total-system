@@ -1,9 +1,12 @@
 class LoginController < ApplicationController
   def index
-    
+    @num = rand(0..2)
+    @imageauth = ImageAuth.new(@num)
+    @image = @imageauth.auth_dis
   end
+
   def new
-    @user=User.new()
+    @user=User.new()   
   end
 
   def create
@@ -12,9 +15,12 @@ class LoginController < ApplicationController
   def login
     mail=params[:mail]
     password=params[:password]
-    @user=User.find_by(email:mail)
+    image_word = params[:image_word]
+    word = params[:word].to_i
+    imageauth_word = ImageAuth.new(word).auth_dis_word
+    @user = User.find_by(email:mail)
     @chatwork = InquiryChatwork.new
-    if @user and @user.authenticate(password)
+    if @user and @user.authenticate(password) and image_word == imageauth_word
       cookies[:userid] = {:value => @user.id, :expires => 5.days.from_now } 
       cookies.signed[:secret] = {
       :value => password,
