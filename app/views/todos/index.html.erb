@@ -11,6 +11,7 @@
 定期的
 </button>
 <%= stylesheet_link_tag "todoindexcss/todos", :media => "all" %>
+<%= will_paginate @todos, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
 <%= render partial: "form" %>
 <%= will_paginate @todos, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
 <!-- 2.編集モーダルの配置 -->
