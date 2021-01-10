@@ -145,7 +145,7 @@ class TodosController < ApplicationController
       else
         flash[:danger]="「#{@todo.title}」の削除に失敗しました"
       end
-      redirect_to session[:url]
+      redirect_to todos_path
     end
   end
 
