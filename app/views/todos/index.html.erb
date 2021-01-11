@@ -25,7 +25,7 @@
         </button>
         <h4 class="modal-title" id="modal-label"><b>新規まとめ追加(定期的)</b></h4>
         <div class="modal-body">
-        <% sdate2=@today.next_day(10) %>
+        <% sdate2=@today.next_day(10).end_of_month %>
         <%= form_with(url: todos_createmany_path,local: true) do |f| %>
           タイトル　：<%= f.text_field :title, placeholder: '必須',required: true %><br>
           開始年月日：<br>

@@ -32,10 +32,10 @@ class TodosController < ApplicationController
   
   def new
     now = Time.current  
-    sdate=now.since(1.days)
-    sdate=params[:gday].to_date if params[:section] == "1"
-    @sdate=Date.new(sdate.year, sdate.month, sdate.day)
-    @todo=Todo.new
+    sdate = now
+    sdate = params[:gday].to_date if params[:section] == "1"
+    @sdate  =Date.new(sdate.year, sdate.month, sdate.day)
+    @todo = Todo.new
   end
   
   def create
@@ -145,7 +145,7 @@ class TodosController < ApplicationController
       else
         flash[:danger]="「#{@todo.title}」の削除に失敗しました"
       end
-      redirect_to session[:url]
+      redirect_to todos_path
     end
   end
 
