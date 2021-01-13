@@ -27,10 +27,10 @@ class LoginController < ApplicationController
       :expires => 5.days.from_now
      }
       flash[:success]="ログインに成功しました"
-      @chatwork.push_chatwork_message(@user,2)
+      @chatwork.push_chatwork_message(@user, 2, request.domain)
       redirect_to '/'
     else
-      @chatwork.push_chatwork_message(@user,3)
+      @chatwork.push_chatwork_message(@user, 3, request.domain)
       flash[:warning]="ログインに失敗しました"
       redirect_to login_index_path
     end

@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     if @comment.save
       if cookies[:userid].blank?
         @chatwork = InquiryChatwork.new
-        @chatwork.push_chatwork_message(@comment,1)
+        @chatwork.push_chatwork_message(@comment, 1, request.domain)
       end
       redirect_to "/blogs/#{blog_id.to_s}"
     else
