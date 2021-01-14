@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   require 'net/https'
   require 'json'
+  before_action :url_set, only: [:create]
 
   def create
     @comment=Comment.new(comment_params)
@@ -8,7 +9,7 @@ class CommentsController < ApplicationController
     if @comment.save
       if cookies[:userid].blank?
         @chatwork = InquiryChatwork.new
-        @chatwork.push_chatwork_message(@comment, 1, request.domain)
+        @chatwork.push_chatwork_message(@comment, 1, @url)
       end
       redirect_to "/blogs/#{blog_id.to_s}"
     else

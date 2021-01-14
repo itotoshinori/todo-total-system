@@ -66,6 +66,7 @@ class ApplicationController < ActionController::Base
         @dates << Datecollection.new(date,iw)
       end
     end
+
     def place_setting
       userid_set
       user = User.find(@userid)
@@ -73,7 +74,13 @@ class ApplicationController < ActionController::Base
       @placename = Place.find_by(code:placecode).name
       @weather = Weather.new(placecode)
     end
-    
+
+    def url_set
+      protocol = request.protocol
+      host = request.host
+      @url = "#{ protocol }#{ host }/" #現在のurlを取得
+    end
+  
     private
     def current_user_set
       if cookies[:userid].present?

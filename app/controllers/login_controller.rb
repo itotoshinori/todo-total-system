@@ -1,4 +1,6 @@
 class LoginController < ApplicationController
+  before_action :url_set, only: [:login]
+
   def index
     @num = rand(0..5)
     @imageauth = ImageAuth.new(@num)
@@ -27,10 +29,10 @@ class LoginController < ApplicationController
       :expires => 5.days.from_now
      }
       flash[:success]="ログインに成功しました"
-      @chatwork.push_chatwork_message(@user, 2, request.domain)
+      @chatwork.push_chatwork_message(@user, 2, @url)
       redirect_to '/'
     else
-      @chatwork.push_chatwork_message(@user, 3, request.domain)
+      @chatwork.push_chatwork_message(@user, 3, @url)
       flash[:warning]="ログインに失敗しました"
       redirect_to login_index_path
     end
