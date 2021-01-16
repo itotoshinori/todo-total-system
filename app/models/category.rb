@@ -14,7 +14,9 @@ class Category < ApplicationRecord
   旅行:9,
   保険等:10,
   契約書:11,
-  ブックマーク:12 }
+  ブックマーク:12,
+  転職活動:13,
+  健康管理:14}
 
   def category_array(todo)
     if todo.category_id.present? or todo.category_id2.present? or todo.category_id3.present?
