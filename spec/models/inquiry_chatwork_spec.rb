@@ -8,33 +8,34 @@ RSpec.describe InquiryChatwork, type: :model do
   describe 'chatワークへの登録' do
     before do
       @inquiry = InquiryChatwork.new
+      @url = "http://localhost/"
     end
     # it '条件が1で必須項目が入力されていれば、チャットワークに送信される' do
-    #   @chatwork = @inquiry.push_chatwork_message(@comment,1)
+    #   @chatwork = @inquiry.push_chatwork_message(@comment,1,@url)
     #   expect(@chatwork).to eq true
     #   #expect(@chatwork).to eq #<Net::HTTPOK 200 OK readbody=true>
     # end
     # it '条件が2で必須項目が入力されていれば、チャットワークに送信される' do
-    #   @chatwork = @inquiry.push_chatwork_message(@comment,2)
+    #   @chatwork = @inquiry.push_chatwork_message(@comment,2,@url)
     #   expect(@chatwork).to eq true
     #   #expect(@chatwork).to eq #<Net::HTTPOK 200 OK readbody=true>
     # end
     # it '条件が3なら、チャットワークに送信される' do
-    #   @chatwork = @inquiry.push_chatwork_message(@comment,3)
+    #   @chatwork = @inquiry.push_chatwork_message(@comment,3,@url)
     #   expect(@chatwork).to eq true
     # end
     # it '条件が4なら、チャットワークに送信されない' do
-    #   @chatwork = @inquiry.push_chatwork_message(@comment,4)
+    #   @chatwork = @inquiry.push_chatwork_message(@comment,4,@url)
     #   expect(@chatwork).to eq false
     # end
     # it '送信内容がなけらば、チャットワークに送信されない' do
     #   @comment = []
-    #   @chatwork = @inquiry.push_chatwork_message(@comment,2)
+    #   @chatwork = @inquiry.push_chatwork_message(@comment,2,@url)
     #   expect(@chatwork).to eq false
     # end
     # it '条件が3で必須項目がなければ、チャットワークに送信されない' do
     #   @comment = []
-    #   @chatwork = @inquiry.push_chatwork_message(@comment,3)
+    #   @chatwork = @inquiry.push_chatwork_message(@comment,3,@url)
     #   expect(@chatwork).to eq false
     # end
   end

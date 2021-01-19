@@ -39,6 +39,7 @@
            <p>
           <%= f.submit "登録", class: "btn btn-primary",data: { confirm: "本当に登録しますか？" },style:"width:100px;height:50px" %></p>
         <% end %>
+        <% session[:url]=request.url %> 
         </div>
       </div>
     </div>
