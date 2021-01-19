@@ -1,7 +1,7 @@
 <%= form_for(@todo) do |f| %>
     <p></p>
       <%= f.label :タイトル %><br>
-      <%= f.text_field :title, placeholder: 'タイトル(必須)'  %>
+      <%= f.text_field :title, placeholder: 'タイトル(必須)',id:'title'  %>
       <br>
        <%= f.label :期限・開催※時間はイベント時のみ入力 %><br>
       <%= f.collection_select :term, @dates, :id, :dateweek, :selected=>@sdate %>
