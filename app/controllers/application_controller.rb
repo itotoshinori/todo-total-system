@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def password_repair
     if @current_user.present?
-      if @current_user.authenticate("password") 
+      if @current_user.authenticate("helppass") 
         flash[:danger] = "パスワードを変更して下さい"
         redirect_to edit_user_path @current_user.id
       end
