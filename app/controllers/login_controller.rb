@@ -19,11 +19,10 @@ class LoginController < ApplicationController
     password=params[:password]
     image_word = params[:image_word]
     word = params[:word].to_i
-    #imageauth_word = ImageAuth.new(word).auth_dis_word
+    imageauth_word = ImageAuth.new(word).auth_dis_word
     @user = User.find_by(email:mail)
     @chatwork = InquiryChatwork.new
-    if @user and @user.authenticate(password)
-    #if @user and @user.authenticate(password) and image_word == imageauth_word
+    if @user and @user.authenticate(password) and image_word == imageauth_word
       cookies[:userid] = {:value => @user.id, :expires => 5.days.from_now } 
       cookies.signed[:secret] = {
       :value => password,

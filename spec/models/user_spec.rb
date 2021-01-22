@@ -33,7 +33,6 @@ RSpec.describe User, type: :model do
     it 'パスワードのリセットメソッド' do
         @password_reset = User.new.password_reset(@user.id) 
         @user = User.find(@user.id)
-        #@user = User.find(@user.id)
         expect(@password_reset).to eq true 
         expect(!!@user.authenticate("helppass")).to eq(true)
     end
