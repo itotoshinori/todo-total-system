@@ -4,6 +4,8 @@ class SearchController < ApplicationController
   before_action :password_repair
   before_action :unless_user
   before_action :timeselect
+  before_action :data_set
+  
   require 'active_support/core_ext/date'
   def condition
     @title = params[:title]
