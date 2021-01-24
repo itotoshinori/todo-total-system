@@ -49,10 +49,6 @@ class ApplicationController < ActionController::Base
   
   def data_set
     @date = Date.today
-    sdate = @date.prev_year
-    fdate = @date.since(3.month)
-    @startdate = Date.new(sdate.year, sdate.month, sdate.day)
-    @finishdate = Date.new(fdate.year, fdate.month, fdate.day)
   end
 
   def timeselect
