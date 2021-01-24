@@ -28,7 +28,11 @@
         <tbody>
         <% @todos.each do |form|%>
         <% kei=form.accounts.sum(:amount).to_s(:delimited, delimiter: ',') %>
-            <tr>
+            <% if @today==form.term  or @today==form.finishday %>
+                <tr style="background-color: #DDFFFF;">
+            <% else %>
+                <tr>
+            <% end %>
                 <td data-label="内容" style="text-align: left;">
                 <% title=mojiseigen(form.title,10) %>
                 <%= link_to title, "/todos/#{form.id}" %></td>
