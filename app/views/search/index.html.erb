@@ -1,5 +1,5 @@
 <b>検索結果</b>
-<p>検索件数：<%=@todos.count %>件　使用額：<%= @todos.sum(:amount).to_s(:delimited, delimiter: ',') %>円<br>
+<p>検索件数：<%=@todos.count %>件　使用額：<%= @todos.sum(:amount).to_s(:delimited, delimiter: ',') %>円　<%=@finished_state %><br>
 検索条件：<%= @title %>　期限:<%=@startdate %>～<%=@finishdate %></p>
 <p>
 <%= form_with(url: search_condition_path, method: :post, local: true) do |f| %>

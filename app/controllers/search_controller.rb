@@ -4,6 +4,8 @@ class SearchController < ApplicationController
   before_action :password_repair
   before_action :unless_user
   before_action :timeselect
+  before_action :data_set
+  
   require 'active_support/core_ext/date'
   def condition
     @title = params[:title]
@@ -24,6 +26,12 @@ class SearchController < ApplicationController
     @startdate = params[:startdate][:id]
     @finishdate = params[:finishdate][:id]
     @todos = Todo.includes(:accounts).where(user_id:@userid).where('title LIKE ?', "%#{@title}%").where("term >= ?", @startdate).where("term <= ?", @finishdate).order(:term).paginate(page: params[:page], per_page: 20)
+    if params[:finished_only] == "1"
+      @todos = @todos.where(finishday:nil)
+      @finished_state = "未完了対象"
+    else 
+      @finished_state = "全対象"
+    end 
     @kubun = 1
     if @todos.count >= 100
       flash.now[:warning] = "検索結果が100件を超えてます。絞り込みをお願いします"

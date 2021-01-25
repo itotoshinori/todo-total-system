@@ -77,7 +77,7 @@ class UsersController < ApplicationController
   def password_reset
     password_reset = User.new.password_reset(params[:id])
     if password_reset
-      flash[:success] = "該当のユーザーパスワードを「password」に変更しました。"
+      flash[:success] = "該当のユーザーパスワードを「helppass」に変更しました。"
     else
       flash[:warning] = "該当のユーザーパスワード変更に失敗しました。"
     end

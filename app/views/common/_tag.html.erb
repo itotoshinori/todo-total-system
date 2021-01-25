@@ -3,6 +3,7 @@
   <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
     本文にタグを挿入する
   </a>
+  <button id="important" type="button">重要</button>
 </div>
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
@@ -55,5 +56,13 @@
   });
   $("#bodyclear").click(function () {
       $('#body').val("");
-  }); 
+  });
+  $("#important").click( function() {
+    // 追記するデータを定義しておきます
+    var addText = "【重】";
+    // テキストボックスのデータを取得します
+    var getData = String($("#title").val());
+    // 取得データと追記文言をくっつけて出力します
+    $("#title").val( addText + getData );
+  });
 </script>

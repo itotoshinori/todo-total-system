@@ -40,7 +40,7 @@
         <li><a href="/todos/">Todo<br><span class="sub">todo</span></a></li>
         <% if cookies[:userid].present? %>
           <li><a href="https://calendar.google.com/calendar/" target="new">calendar<br><span class="sub">Schedule</span></a></li>
-          <li><a href="/totalizations">集計表<br><span class="sub">account</span></a></li>
+          <li><a href="/categories">分類別<br><span class="sub">category</span></a></li>
           <li><a href="/search/condition">タイトル検索<br><span class="sub">serch</span></a></li>
           <li><a href="/todos/new">Todo新規<br><span class="sub">new</span></a></li>
         <% end %>
@@ -89,6 +89,7 @@
                 <li><%= link_to "削除対象一覧",targets_path %></li>
                 <li><a href="/totalizations">会計集計表</a></li>
                 <li><a href="/search/condition">タイトル検索</a></li>
+                <li><%= link_to "重要検索","/search?utf8=%E2%9C%93&title=%E3%80%90%E9%87%8D%E3%80%91&finished_only=1&startdate%5Bid%5D=#{Date.today.prev_year}&finishdate%5Bid%5D=#{Date.today.next_year}&commit=%E6%A4%9C%E7%B4%A2" %></li>
                 <li><a href="/toexport/condition">エクスポート</a></li>
                 <li><a href="/login/logout">ログアウト</a></li>
                 <li><%= link_to "パスワード変更",edit_user_path(cookies[:userid]) %></li>

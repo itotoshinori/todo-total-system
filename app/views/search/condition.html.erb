@@ -5,6 +5,7 @@
   <p>
     <%= f.label :タイトル %><br>
     <%= f.text_field :title,value:@title,placeholder:"曖昧検索" , required: true %>
+    <%= f.label :未完了のみ %> <%= f.check_box :finished_only %><br>
   </p>
     <%= f.label :期限 %><br>
     <%= collection_select(:startdate,:id,@dates,:id, :dateweek , {:selected=>@startdate}) %>-<%= collection_select(:finishdate,:id,@dates,:id, :dateweek , {:selected=>@finishdate}) %>
