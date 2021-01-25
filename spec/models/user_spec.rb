@@ -30,10 +30,18 @@ RSpec.describe User, type: :model do
       expect(@user.valid?).to eq(false)
     end
 
+    it 'メールが重複していたら NG' do
+      @user2 = User.create(email:"TEST1234@example.com",password:"password",name:"岡田")
+      @user2.save
+      #@user = User.find(@user.id)
+      expect(@user2.valid?).to eq(false)
+    end
+
     it 'パスワードのリセットメソッド' do
         @password_reset = User.new.password_reset(@user.id)
         #@user = User.find(@user.id)
         expect(@password_reset).to eq true 
     end
+
   end
 end
