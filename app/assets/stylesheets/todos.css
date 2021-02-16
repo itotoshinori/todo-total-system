@@ -76,3 +76,7 @@
   display: inline-block;
 }
 
+.textdecoration_linethrough{
+  text-decoration: line-through;
+}
+

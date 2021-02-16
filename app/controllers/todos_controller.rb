@@ -5,6 +5,7 @@ class TodosController < ApplicationController
   before_action :unless_user,  only: [:index,:indexfinished,:show,:edit,:schedule]
   before_action :timeselect,   only: [:new,:create,:edit,:update,:index,:searchresult,:research]
   before_action :place_setting, only: [:index]
+  before_action :data_set
   require 'active_support/core_ext/date'
 
   def index
@@ -20,7 +21,9 @@ class TodosController < ApplicationController
       @todos = Todo.includes(:accounts).where(user_id:@userid).where(finishday:date).order(created_at: "DESC").paginate(page: params[:page], per_page: 20).order(created_at: "ASC")
       @kubun = 2
     else
-      @todos = Todo.includes(:accounts).where(finished:false).where(user_id:@userid).order(:term).paginate(page: params[:page], per_page: 20).order(created_at: "ASC")
+      @todos = Todo.where(finished:false).or(Todo.where(finishday:@date))
+      @todos = @todos.includes(:accounts).where(user_id:@userid).order(:term).paginate(page: params[:page], per_page: 20).order(created_at: "ASC")
+      #@todos = Todo.includes(:accounts).where(finished:false).where(user_id:@userid).order(:term).paginate(page: params[:page], per_page: 20).order(created_at: "ASC")
       @kubun = 1
     end
   end

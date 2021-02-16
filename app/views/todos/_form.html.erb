@@ -33,7 +33,14 @@
             <% end %>
                 <td data-label="内容" style="text-align: left;">
                 <% title=mojiseigen(form.title,8) %>
-                <%= link_to title, "/todos/#{form.id}" %>   </td>
+                <% if form.finishday == @today and @kubun == 1 %>
+                    <div class="textdecoration_linethrough">
+                        <%= link_to title, "/todos/#{form.id}" %>   
+                    </div>
+                <% else %>
+                     <%= link_to title, "/todos/#{form.id}" %> 
+                <% end %>
+                </td>
                 <td style="text-align: right; width:100px;"><%=kei %></td>
                 <td>
                 <% if @kubun==1 %>
