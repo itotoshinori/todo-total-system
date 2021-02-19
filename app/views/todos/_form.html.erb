@@ -26,10 +26,10 @@
         <tbody>
         <% @todos.each do |form|%>
         <% kei=form.accounts.sum(:amount).to_s(:delimited, delimiter: ',') %>
-            <% if @today==form.term %>
-                <tr style="background-color: #DDFFFF;">
-            <% elsif @today==form.finishday %>
+            <% if @today == form.finishday %>
                 <tr style="background-color: #fff3b8">
+            <% elsif @today == form.term %>
+                <tr style="background-color: #DDFFFF;">  
             <% else %>
                 <tr>
             <% end %>
