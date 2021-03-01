@@ -12,7 +12,7 @@ class Weather
       id = placecode
       response = open(BASE_URL + "?id=#{id}&APPID=#{API_KEY}")
       hash = JSON.load(response)
-      t = DateTime.now + Rational(10, 24)
+      t = DateTime.now
       day_today =  t.strftime("%Y-%m-%d")  
       current_hour = t.hour
       wh = 0
@@ -30,7 +30,7 @@ class Weather
       end
       wh += 1
     end
-      @return_info = current_hour.to_s+"時"+day_today
+      @return_info = wh
       @information = weatherdate
     rescue => exception
       @information = false
