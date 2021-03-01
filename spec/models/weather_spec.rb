@@ -7,7 +7,7 @@ RSpec.describe Weather, type: :model do
   end
   describe '天気予報結果のテスト' do
     it '該当の地域が存在すればtrueを返す' do
-        expect(@weather.return_info).to eq true
+        expect(@weather.return_info).to be >= 1
     end
     it '該当の地域がないとfalseを返す' do
         @weather = Weather.new("1")
