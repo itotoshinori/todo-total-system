@@ -36,7 +36,7 @@ class Weather
       weatherdate = []
       count = start_time
       wh = 0
-      (start_time..7).each do |i|
+      (start_time..8).each do |i|
         if wether_hash["list"][wh]["dt_txt"] == daylist[count]
           month = wether_hash["list"][wh]["dt_txt"].slice(5..6) + "月"
           day = wether_hash["list"][wh]["dt_txt"].slice(8..9) + "日"
