@@ -29,8 +29,8 @@ class Weather
         weatherdate.push([date_hour,weather_items[w_list]["ja"],weather_items[w_list]["icon"]]) 
       end
       wh += 1
-      end
-      @return_info = wh
+    end
+      @return_info = current_hour.to_s+"時"+day_today
       @information = weatherdate
     rescue => exception
       @information = false
