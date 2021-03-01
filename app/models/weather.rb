@@ -10,7 +10,6 @@ class Weather
     begin
       weather_items = Weatheritems.new.items
       hour = Time.now.hour.to_i
-      hour = 19 
       if hour <= 9
         day = Date.today
         start_time = 0
