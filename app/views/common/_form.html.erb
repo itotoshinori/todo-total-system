@@ -1,10 +1,21 @@
-<% if @weather.re_info %>
-  <%= @placename %>
-    今日<img src=<%=@weather.display1 %>>
-    あす<img src=<%=@weather.display2 %>>
-  <% if @weather.display3.present? %>
-    明後日<img src=<%=@weather.display3 %>>
-  <% end %>
+<% weather = @weather.re_info %>
+<% if weather %> 
+ <table>
+ <tr>
+ <td><%= @placename %></td>
+ <% weather.each do | date | %>
+  <td>
+  <div style="font-size: 10px;">
+    <%= date.datehour %><br />
+    <%= image_tag "/gazou/#{date.icon}",:size => '50x50' %>
+  </div>
+  </td>
+ <% end %>
+ </tr>
+ </table>
 <% else %>
   天気予報の情報取得に失敗しました
 <% end %>
+
+
+
