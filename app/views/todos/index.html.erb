@@ -1,10 +1,8 @@
-<div class="lead">
 <% if @kubun == 1 %>
-  仕掛一覧
+  <h4>仕掛一覧</h4>
 <% else %>  
-  完了一覧
+  <h4>完了一覧</h4>
 <% end %> 
-</div>
 <div><%= react_component("HelloWorld", { greeting:"" }) %></div> 
 <div style="margin-bottom:10px"><%=render partial: 'common/form' %></div>
 <button class="btn btn-primary"  data-toggle="modal" data-target="#modal-sa">
