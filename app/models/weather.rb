@@ -9,53 +9,34 @@ class Weather
   def initialize(placecode)
     begin
       weather_items = Weatheritems.new.items
-      hour = Time.now.hour.to_i
-      hour =22
-      if hour <= 9
-        day = Date.today
-        start_time = 0
-      elsif hour <= 15
-        day = Date.today
-        start_time = 1
-      else
-        day = Date.today + 1
-        start_time = 0
-      end
-      last_time = 2
-      daylist = []
-      (start_time..last_time).each do |d|
-        daylist.push(day.to_s + " 09:00:00")
-        daylist.push(day.to_s + " 15:00:00") 
-        daylist.push(day.to_s + " 21:00:00")  
-        day = day + 1
-      end
-      id = placecode.to_s
+      id = placecode
       response = open(BASE_URL + "?id=#{id}&APPID=#{API_KEY}")
-      wether_hash = JSON.load(response)
-      @information = wether_hash
-      weatherdate = []
-      count = start_time
+      hash = JSON.load(response)
+      t = DateTime.now + Rational(10, 24)
+      day_today =  t.strftime("%Y-%m-%d")  
+      current_hour = t.hour
       wh = 0
-      (start_time..8).each do |i|
-        if wether_hash["list"][wh]["dt_txt"] == daylist[count]
-          month = wether_hash["list"][wh]["dt_txt"].slice(5..6) + "月"
-          day = wether_hash["list"][wh]["dt_txt"].slice(8..9) + "日"
-          hour = wether_hash["list"][wh]["dt_txt"].slice(11..12) + "時"
-          w_list = wether_hash["list"][wh]["weather"][0]["description"]
-          date_hour =  day + hour 
-          weatherdate << Weathercolletion.new(date_hour,weather_items[w_list]["ja"],weather_items[w_list]["icon"]) 
-          count += 1
-        end
-        wh += 1
+      weatherdate = []
+      (7..13).each do |i|
+        suu = hash["list"][wh]["dt_txt"].slice(0..9)
+        month = hash["list"][wh]["dt_txt"].slice(5..6) + "月"
+        day = hash["list"][wh]["dt_txt"].slice(8..9) + "日"
+        hour = hash["list"][wh]["dt_txt"].slice(11..12)
+        hour_dis = hour + "時"
+        w_list = hash["list"][wh]["weather"][0]["description"]
+        date_hour = day + hour_dis 
+      if  (suu.to_s == day_today.to_s and hour.to_i > current_hour.to_i) or suu.to_s > day_today.to_s
+        weatherdate.push([date_hour,weather_items[w_list]["ja"],weather_items[w_list]["icon"]]) 
       end
-      @return_info = count
+      wh += 1
+      end
+      @return_info = wh
       @information = weatherdate
     rescue => exception
       @information = false
       @return_info = false
     end
   end
- 
   def re_info
     @information
   end

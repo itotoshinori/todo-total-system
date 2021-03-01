@@ -3,11 +3,11 @@
  <table>
  <tr>
  <td><%= @placename %></td>
- <% weather.each do | date | %>
+ <% weather.each do | datehour,word,icon| %>
   <td>
   <div style="font-size: 10px;">
-    <%= date.datehour %><br />
-    <%= image_tag "/gazou/#{date.icon}",:size => '50x50' %>
+    <%= datehour %><br />
+    <%= image_tag "/gazou/#{icon}",:size => '50x50' %>
   </div>
   </td>
  <% end %>
