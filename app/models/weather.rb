@@ -18,7 +18,7 @@ class Weather
       skip = 2
       wh = skip
       weatherdate = []
-      (0..3).each do |i|
+      (0..2).each do |i|
         w_day = w_hash["list"][wh]["dt_txt"].slice(0..9)
         month = w_hash["list"][wh]["dt_txt"].slice(5..6) + "月"
         day = w_hash["list"][wh]["dt_txt"].slice(8..9) + "日"
