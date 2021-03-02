@@ -11,26 +11,27 @@ class Weather
       weather_items = Weatheritems.new.items
       id = placecode
       response = open(BASE_URL + "?id=#{id}&APPID=#{API_KEY}")
-      hash = JSON.load(response)
+      w_hash = JSON.load(response)
       t = DateTime.now
       day_today =  t.strftime("%Y-%m-%d")  
       current_hour = t.hour
-      wh = 0
+      skip = 2
+      wh = skip
       weatherdate = []
-      (7..13).each do |i|
-        suu = hash["list"][wh]["dt_txt"].slice(0..9)
-        month = hash["list"][wh]["dt_txt"].slice(5..6) + "月"
-        day = hash["list"][wh]["dt_txt"].slice(8..9) + "日"
-        hour = hash["list"][wh]["dt_txt"].slice(11..12)
+      (0..3).each do |i|
+        w_day = w_hash["list"][wh]["dt_txt"].slice(0..9)
+        month = w_hash["list"][wh]["dt_txt"].slice(5..6) + "月"
+        day = w_hash["list"][wh]["dt_txt"].slice(8..9) + "日"
+        hour = w_hash["list"][wh]["dt_txt"].slice(11..12)
         hour_dis = hour + "時"
-        w_list = hash["list"][wh]["weather"][0]["description"]
+        w_list = w_hash["list"][wh]["weather"][0]["description"]
         date_hour = day + hour_dis 
-      if  (suu.to_s == day_today.to_s and hour.to_i > current_hour.to_i) or suu.to_s > day_today.to_s
+      if  (w_day.to_s == day_today.to_s and hour.to_i > current_hour.to_i) or w_day.to_s > day_today.to_s
         weatherdate.push([date_hour,weather_items[w_list]["ja"],weather_items[w_list]["icon"]]) 
       end
-      wh += 1
+      wh += skip
     end
-      @return_info = wh
+      @return_info = (wh - skip)/skip
       @information = weatherdate
     rescue => exception
       @information = false
