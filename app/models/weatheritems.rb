@@ -1,6 +1,6 @@
 class Weatheritems
-   def items
-     weather_items= {
+  def initialize(en)
+  weather_items= {
   "clear sky"=>{"ja"=>"快晴", "icon"=>"clearsky.png"},
   "few clouds"=>{"ja"=>"くもり雲少なめ","icon"=>"fewclouds.png"},
   "scattered clouds"=>{"ja"=>"くもり雲ふつう","icon"=>"scatteredclouds.png"},
@@ -17,6 +17,19 @@ class Weatheritems
    "snow"=>{"ja"=>"雷雨","icon"=>"snow.png"},
    "mist"=>{"ja"=>"雷雨","icon"=>"snow.png"},
    "tornado"=>{"ja"=>"雷雨","icon"=>"snow.png"},
-} 
+    }
+    begin
+      #@ja = en
+      @ja = weather_items[en]["ja"]
+      @icon = weather_items[en]["icon"]
+    rescue => exception
+      @ja = "情報取得失敗"
+    end
+  end
+  def ja_name
+    @ja
+  end
+  def icon
+    @icon
   end
 end

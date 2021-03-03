@@ -5,54 +5,38 @@ class Weather
   require 'weatheritems'
   API_KEY = "333035987f1db09cade4bb868e15d88a"
   BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
-  
+  #http://api.openweathermap.org/data/2.5/forecast/?id=1850147&APPID=333035987f1db09cade4bb868e15d88a
   def initialize(placecode)
     begin
-      weather_items = Weatheritems.new.items
       id = placecode
       response = open(BASE_URL + "?id=#{id}&APPID=#{API_KEY}")
       w_hash = JSON.load(response)
-      t = DateTime.now
-      day_today =  t.strftime("%Y-%m-%d")  
-      current_hour = t.hour
-      #current_hour = 14
-      skip = 2
-      wh = 3
-      weatherdate = []
-      (0..1).each do |i|
-        w_day = w_hash["list"][wh]["dt_txt"].slice(0..9)
-        month = w_hash["list"][wh]["dt_txt"].slice(5..6) + "月"
-        day = w_hash["list"][wh]["dt_txt"].slice(8..9) + "日"
-        hour = w_hash["list"][wh]["dt_txt"].slice(11..12)
-        hour_dis = hour + "時"
-        w_list = w_hash["list"][wh]["weather"][0]["description"]
-        date_hour = day + hour_dis 
-      if  (w_day.to_s == day_today.to_s and hour.to_i > current_hour.to_i) or w_day.to_s > day_today.to_s
-        weatherdate.push([date_hour,weather_items[w_list]["ja"],weather_items[w_list]["icon"]]) 
+      weather_data = []
+      (8..32).each do |i|
+        month = w_hash["list"][i]["dt_txt"].slice(5..6) + "月"
+        day = w_hash["list"][i]["dt_txt"].slice(8..9) + "日"
+        hour = w_hash["list"][i]["dt_txt"].slice(11..12)
+        hour_ja = hour + "時"
+        w_name_en = w_hash["list"][i]["weather"][0]["description"]
+        weather_items = Weatheritems.new(w_name_en)
+        w_name_ja = weather_items.ja_name.to_s
+        w_name_ja = w_name_en if w_name_ja == "情報取得失敗"
+        icon = weather_items.icon.to_s
+        if hour == "12"
+          weather_data.push([day+hour_ja,w_name_ja,icon])
+        end
       end
-      wh += skip
-    end
-      @return_info = (wh - skip)/skip
-      @information = weatherdate
+      @return_info = true
+      @information = weather_data
     rescue => exception
-      @information = false
       @return_info = false
+      @information = false
     end
   end
-  def re_info
-    @information
-  end
-
   def return_info
     @return_info
   end
-end
-
-class Weathercolletion
-  attr_accessor :datehour,:date,:icon
-  def initialize(datehour,date,icon)
-    self.datehour = datehour
-    self.date = date
-    self.icon = icon
+  def re_info
+    @information
   end
 end

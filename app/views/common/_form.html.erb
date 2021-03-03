@@ -1,21 +1,19 @@
+
 <% weather = @weather.re_info %>
 <% if weather %> 
  <table>
- <tr>
- <td><%= @placename %></td>
- <% weather.each do | datehour,word,icon| %>
-  <td>
-  <div style="font-size: 10px;">
-    <%= datehour %><br />
-    <%= image_tag "/gazou/#{icon}",:size => '50x50' %>
-  </div>
-  </td>
- <% end %>
- </tr>
- </table>
+  <tr>
+    <td><%= @placename %></td>
+  <% weather.each do | datehour,word,icon| %>
+    <td>
+      <div style="font-size: 10px;">
+        <%= datehour %><br />
+        <%= image_tag "/gazou/#{icon}",:size => '50x50'%>
+      </div>
+    </td>
+  <% end %>
+    </tr>
+  </table>
 <% else %>
   <%= @placename %>の天気予報の情報取得に失敗しました
 <% end %>
-
-
-
