@@ -8,7 +8,7 @@ class Weather < Weatheritem
   def initialize(placecode)
     begin
       id = placecode
-      response = open(BASE_URL + "?id=#{id}&APPID=#{API_KEY}")
+      response = open(BASE_URL + "?id=#{id}&units=metric&APPID=#{API_KEY}")
       w_hash = JSON.load(response)
       now_datetime = DateTime.now
       day_today =  now_datetime.strftime("%Y-%m-%d")
@@ -23,6 +23,7 @@ class Weather < Weatheritem
         hour = w_hash["list"][i]["dt_txt"].slice(11..12)
         hour_ja = hour + "時"
         w_name_en = w_hash["list"][i]["weather"][0]["description"]
+        icon = w_hash["list"][i]["weather"][0]["icon"]
         weather_items = Weatheritem.new(w_name_en)
         w_name_ja = weather_items.ja_name.to_s
         if w_name_ja == "情報取得失敗"
@@ -31,13 +32,14 @@ class Weather < Weatheritem
         else
           w_get = true
         end
-        icon = weather_items.icon.to_s
+        icon_url = "http://openweathermap.org/img/wn/#{icon}@2x.png"
+        #icon = weather_items.icon.to_s
         #if hour == "12"
         if (hour == "12"  and (w_day > day_today or (day_hour.to_i <= 11 and w_day == day_today ))) or (day_hour.to_i >= 12 and day_hour.to_i <18 and w_day == day_today and hour == "18")
-          weather_data.push([day+hour_ja,w_name_ja,icon,w_get])
+          weather_data.push([day+hour_ja,w_name_ja,icon_url,w_get])
         end
       end
-      @return_info = true
+      @return_info = true #"icon": "02d"
       @information = weather_data
     rescue => exception
       @return_info = false

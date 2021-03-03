@@ -3,13 +3,16 @@
 <% if weather %> 
  <table>
   <tr>
-    <td><%= link_to @placename,"https://openweathermap.org/" %></td>
+    <td>
+    <%= link_to @placename,"https://openweathermap.org/" %>
+    </td>
   <% weather.each do | datehour,word,icon,get_info | %>
     <td valign="top" >
       <div style="font-size: 10px;">
         <%= datehour %><br />
         <% if get_info %>
-          <%= image_tag "/gazou/#{icon}",:size => '50x50'%>
+          <%#= image_tag "/gazou/#{icon}",:size => '50x50'%>
+          <%= image_tag icon,:size => '50x50'%>
         <% else %>
           <%= word %>
         <% end %>
