@@ -12,7 +12,7 @@ class Weather
       response = open(BASE_URL + "?id=#{id}&APPID=#{API_KEY}")
       w_hash = JSON.load(response)
       weather_data = []
-      (8..32).each do |i|
+      (4..32).each do |i|
         month = w_hash["list"][i]["dt_txt"].slice(5..6) + "月"
         day = w_hash["list"][i]["dt_txt"].slice(8..9) + "日"
         hour = w_hash["list"][i]["dt_txt"].slice(11..12)
