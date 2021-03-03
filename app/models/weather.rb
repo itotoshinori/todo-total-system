@@ -14,7 +14,7 @@ class Weather
       w_hash = JSON.load(response)
       t = DateTime.now
       day_today =  t.strftime("%Y-%m-%d")  
-      current_hour = 14
+      #current_hour = 14
       skip = 2
       wh = 3
       weatherdate = []
