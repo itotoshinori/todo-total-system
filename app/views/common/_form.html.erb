@@ -3,7 +3,7 @@
 <% if weather %> 
  <table>
   <tr>
-    <td><%= @placename %></td>
+    <td><%= link_to @placename,"https://openweathermap.org/" %></td>
   <% weather.each do | datehour,word,icon,get_info | %>
     <td valign="top" >
       <div style="font-size: 10px;">
