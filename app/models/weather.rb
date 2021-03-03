@@ -5,7 +5,7 @@ class Weather
   require 'weatheritems'
   API_KEY = "333035987f1db09cade4bb868e15d88a"
   BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
-  #http://api.openweathermap.org/data/2.5/forecast/?id=1850147&APPID=333035987f1db09cade4bb868e15d88a
+  
   def initialize(placecode)
     begin
       id = placecode
@@ -20,10 +20,15 @@ class Weather
         w_name_en = w_hash["list"][i]["weather"][0]["description"]
         weather_items = Weatheritems.new(w_name_en)
         w_name_ja = weather_items.ja_name.to_s
-        w_name_ja = w_name_en if w_name_ja == "情報取得失敗"
+        if w_name_ja == "情報取得失敗"
+          w_name_ja = w_name_en
+          w_get = false
+        else
+          w_get = true
+        end
         icon = weather_items.icon.to_s
         if hour == "12"
-          weather_data.push([day+hour_ja,w_name_ja,icon])
+          weather_data.push([day+hour_ja,w_name_ja,icon,w_get],)
         end
       end
       @return_info = true

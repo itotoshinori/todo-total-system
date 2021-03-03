@@ -4,11 +4,15 @@
  <table>
   <tr>
     <td><%= @placename %></td>
-  <% weather.each do | datehour,word,icon| %>
-    <td>
+  <% weather.each do | datehour,word,icon,get_info | %>
+    <td valign="top" >
       <div style="font-size: 10px;">
         <%= datehour %><br />
-        <%= image_tag "/gazou/#{icon}",:size => '50x50'%>
+        <% if get_info %>
+          <%= image_tag "/gazou/#{icon}",:size => '50x50'%>
+        <% else %>
+          <%= word %>
+        <% end %>
       </div>
     </td>
   <% end %>
