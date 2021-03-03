@@ -36,7 +36,7 @@ class Weather < Weatheritem
         #icon = weather_items.icon.to_s
         #if hour == "12"
         if (hour == "12"  and (w_day > day_today or (day_hour.to_i <= 11 and w_day == day_today ))) or (day_hour.to_i >= 12 and day_hour.to_i <18 and w_day == day_today and hour == "18")
-          weather_data.push([day+hour_ja,w_name_ja,icon_url,w_get])
+          weather_data.push([day+hour_ja,w_name_ja,icon_url,w_get,w_name_ja])
         end
       end
       @return_info = true #"icon": "02d"
