@@ -14,11 +14,11 @@ class Weather
       w_hash = JSON.load(response)
       t = DateTime.now
       day_today =  t.strftime("%Y-%m-%d")  
-      current_hour = t.hour
+      current_hour = 14
       skip = 2
-      wh = skip
+      wh = 3
       weatherdate = []
-      (0..2).each do |i|
+      (0..1).each do |i|
         w_day = w_hash["list"][wh]["dt_txt"].slice(0..9)
         month = w_hash["list"][wh]["dt_txt"].slice(5..6) + "月"
         day = w_hash["list"][wh]["dt_txt"].slice(8..9) + "日"
