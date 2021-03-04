@@ -23,16 +23,17 @@ class Weather < Weatheritem
         hour = w_hash["list"][i]["dt_txt"].slice(11..12)
         hour_ja = hour + "時"
         w_name_en = w_hash["list"][i]["weather"][0]["description"]
-        icon = w_hash["list"][i]["weather"][0]["icon"]
+        #icon = w_hash["list"][i]["weather"][0]["icon"]
         weather_items = Weatheritem.new(w_name_en)
         w_name_ja = weather_items.ja_name.to_s
+        icon = weather_items.icon
         if w_name_ja == "情報取得失敗"
           w_name_ja = w_name_en
           w_get = false
         else
           w_get = true
         end
-        icon_url = "http://openweathermap.org/img/wn/#{icon}@2x.png"
+        icon_url = "http://openweathermap.org/img/wn/#{icon}"
         if w_day == day_today
           if (day_hour.to_i <=6 and hour == "09") or (day_hour.to_i <=12 and hour == "15") or (day_hour.to_i >12 and day_hour.to_i <=15 and hour == "18") or (day_hour.to_i >15 and day_hour.to_i < 21 and hour == "21")
             result = true
