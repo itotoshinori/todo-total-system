@@ -12,9 +12,9 @@ class Weather < Weatheritem
       w_hash = JSON.load(response)
       now_datetime = DateTime.now
       day_today =  now_datetime.strftime("%Y-%m-%d")
-      #day_today =  "2021-03-04"
-      #day_hour =  "13"
+      day_today =  "2021-03-04"
       day_hour =  now_datetime.hour
+      #day_hour =  "17"
       weather_data = []
       (0..31).each do |i|
         w_day = w_hash["list"][i]["dt_txt"].slice(0..9)
@@ -35,7 +35,7 @@ class Weather < Weatheritem
         icon_url = "http://openweathermap.org/img/wn/#{icon}@2x.png"
         #icon = weather_items.icon.to_s
         #if hour == "12"
-        if (hour == "12"  and (w_day > day_today or (day_hour.to_i <= 11 and w_day == day_today ))) or (day_hour.to_i >= 12 and day_hour.to_i <18 and w_day == day_today and hour == "18")
+        if (hour == "12"  and (w_day > day_today or (day_hour.to_i < 11 and w_day == day_today ))) or (day_hour.to_i >= 11 and day_hour.to_i <17 and w_day == day_today and hour == "18") or (day_hour.to_i >= 17 and day_hour.to_i <21 and w_day == day_today and hour == "21")
           weather_data.push([day+hour_ja,w_name_ja,icon_url,w_get,w_name_ja])
         end
       end
