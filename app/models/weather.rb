@@ -6,7 +6,7 @@ class Weather < Weatheritem
   BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
   
   def initialize(placecode)
-    #begin
+    begin
       id = placecode
       response = open(BASE_URL + "?id=#{id}&units=metric&APPID=#{API_KEY}")
       w_hash = JSON.load(response)
@@ -39,12 +39,12 @@ class Weather < Weatheritem
           weather_data.push([day+hour_ja,w_name_ja,icon_url,w_get,w_name_ja])
         end
       end
-      @return_info = true #"icon": "02d"
+      @return_info = true
       @information = weather_data
-    #rescue => exception
-      #@return_info = false
-      #@information = false
-    #end
+    rescue => exception
+      @return_info = false
+      @information = false
+    end
   end
   def return_info
     @return_info
