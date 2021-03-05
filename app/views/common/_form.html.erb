@@ -1,13 +1,25 @@
 
 <% weather = @weather.re_info %>
-<%=  @weather.return_info %>
 <% if weather %> 
  <table>
   <tr>
     <td>
     <%= link_to @placename,"https://openweathermap.org/" %>
     </td>
-  
+  <% weather.each do | datehour,word,icon,get_info,w_name_ja | %>
+    <td valign="top" >
+      <div style="font-size: 8px; text-align: center;">
+        <%= datehour %><br />
+        <% if get_info %>
+          <%#= image_tag "/gazou/#{icon}",:size => '50x50'%>
+          <%= image_tag icon,:size => '50x50'%><br />
+          <%=w_name_ja %>
+        <% else %>
+          <%= word %>
+        <% end %>
+      </div>
+    </td>
+  <% end %>
     </tr>
   </table>
 <% else %>
