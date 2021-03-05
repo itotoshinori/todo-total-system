@@ -32,9 +32,14 @@ class Weather < Weatheritem
         else
           w_get = true
         end
-        icon_url = "http://openweathermap.org/img/wn/#{icon}@2x.png"
+        #icon_url = "http://openweathermap.org/img/wn/#{icon}@2x.png"
+        if hour >= "19"
+          end_word = "n@2x.png"
+        else
+          end_word = "d@2x.png"
+        end
         icon = weather_items.icon
-        icon_url = "http://openweathermap.org/img/wn/#{icon}"
+        icon_url = "http://openweathermap.org/img/wn/#{icon}#{end_word}"
         if w_day == day_today
           if (day_hour.to_i <=6 and hour == "09") or (day_hour.to_i <=12 and hour == "15") or (day_hour.to_i >12 and day_hour.to_i <=15 and hour == "18") or (day_hour.to_i >=15 and day_hour.to_i < 21 and hour == "21")
             result = true
