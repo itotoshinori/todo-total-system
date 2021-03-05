@@ -14,7 +14,7 @@ class Weather < Weatheritem
       day_today =  now_datetime.strftime("%Y-%m-%d")
       day_nextday  = (Date.today+1).strftime("%Y-%m-%d")
       day_hour =  now_datetime.hour
-      day_hour =  "15"
+      #day_hour =  "15"
       weather_data = []
       (0..31).each do |i|
         w_day = w_hash["list"][i]["dt_txt"].slice(0..9)
