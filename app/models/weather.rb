@@ -53,7 +53,7 @@ class Weather < Weatheritem
         else
           result = false
         end
-        weather_data.push([day+hour_ja,w_name_ja,icon_url,w_get,w_name_ja]) if result
+        weather_data.push([day+hour_ja,w_name_ja,icon_url,w_get]) if result
       end
       @return_info = true
       @information = weather_data
