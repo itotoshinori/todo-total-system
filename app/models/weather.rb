@@ -25,12 +25,12 @@ class Weather < Weatheritem
         w_name_en = w_hash["list"][i]["weather"][0]["description"]
         weather_items = Weatheritem.new(w_name_en)
         w_name_ja = weather_items.ja_name.to_s
-        icon = weather_items.icon
-        icon_url = "http://openweathermap.org/img/wn/#{icon}"
+        icon = w_hash["list"][i]["weather"][0]["icon"]
+        icon_url = "http://openweathermap.org/img/wn/#{icon}@2x.png"
+        #icon = weather_items.icon
+        #icon_url = "http://openweathermap.org/img/wn/#{icon}"
         if w_name_ja == "情報取得失敗"
-          w_name_ja = w_name_en
-          icon = w_hash["list"][i]["weather"][0]["icon"]
-          icon_url = "http://openweathermap.org/img/wn/#{icon}@2x.png"
+          w_name_ja = w_name_en  
           w_get = false
         else
           w_get = true
