@@ -26,6 +26,7 @@ class Weatheritem
       @icon = weather_items[en]["icon"]
     rescue => exception
       @ja = "情報取得失敗"
+      @icon = "情報取得失敗"
     end
   end
   def ja_name
