@@ -2,7 +2,7 @@ class Weather < Weatheritem
   require "json"
   require "open-uri"
   require 'date'
-  API_KEY = "333035987f1db09cade4bb868e15d88a"
+  API_KEY = "38ccd939d777d6a1279227696ad2a4bf"
   BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
   
   def initialize(placecode)
@@ -50,7 +50,7 @@ class Weather < Weatheritem
         end
         weather_data.push([day+hour_ja,w_name_ja,icon_url,w_get,w_name_ja]) if result
       end
-      @return_info = w_hash["list"][0]["dt_txt"] + w_hash["list"][0]["weather"][0]["description"]
+      @return_info = true
       @information = weather_data
     rescue => exception
       @return_info = false
