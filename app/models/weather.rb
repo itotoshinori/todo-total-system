@@ -50,7 +50,7 @@ class Weather < Weatheritem
         end
         weather_data.push([day+hour_ja,w_name_ja,icon_url,w_get,w_name_ja]) if result
       end
-      @return_info = true
+      @return_info = w_hash["list"][0]["dt_txt"] + w_hash["list"][0]["weather"][0]["description"]
       @information = weather_data
     rescue => exception
       @return_info = false
