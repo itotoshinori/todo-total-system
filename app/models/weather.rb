@@ -24,7 +24,7 @@ class Weather < Weatheritem
         hour_ja = hour + "時"
         w_name_en = w_hash["list"][i]["weather"][0]["description"]
         icon = w_hash["list"][i]["weather"][0]["icon"]
-        weather_items = Weatheritem.new(w_name_en)2
+        weather_items = Weatheritem.new(w_name_en)
         w_name_ja = weather_items.ja_name.to_s
         if w_name_ja == "情報取得失敗"
           w_name_ja = w_name_en
