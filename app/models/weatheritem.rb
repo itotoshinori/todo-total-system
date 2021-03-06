@@ -36,3 +36,4 @@ class Weatheritem
     @icon
   end
 end
+

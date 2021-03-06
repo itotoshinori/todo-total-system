@@ -2,11 +2,13 @@ class Weather < Weatheritem
   require "json"
   require "open-uri"
   require 'date'
+  require 'config'
   API_KEY = "38ccd939d777d6a1279227696ad2a4bf"
   BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
   
   def initialize(placecode)
     begin
+      config = Config.new
       id = placecode
       response = open(BASE_URL + "?id=#{id}&units=metric&APPID=#{API_KEY}")
       w_hash = JSON.load(response)
@@ -53,7 +55,8 @@ class Weather < Weatheritem
         else
           result = false
         end
-        weather_data.push([day+hour_ja,w_name_ja,icon_url,w_get]) if result
+        day_hour = config.prezero_exclusion(day) + "日" + config.prezero_exclusion(hour) + "時"
+        weather_data.push([day_hour,w_name_ja,icon_url,w_get]) if result
       end
       @return_info = true
       @information = weather_data
@@ -69,4 +72,3 @@ class Weather < Weatheritem
     @information
   end
 end
-
