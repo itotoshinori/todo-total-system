@@ -20,8 +20,8 @@ class Weather < Weatheritem
       weather_data = []
       (0..31).each do |i|
         w_day = w_hash["list"][i]["dt_txt"].slice(0..9)
-        month = w_hash["list"][i]["dt_txt"].slice(5..6) + "月"
-        day = w_hash["list"][i]["dt_txt"].slice(8..9) + "日"
+        month = w_hash["list"][i]["dt_txt"].slice(5..6) 
+        day = w_hash["list"][i]["dt_txt"].slice(8..9) 
         hour = w_hash["list"][i]["dt_txt"].slice(11..12)
         hour_ja = hour + "時"
         w_name_en = w_hash["list"][i]["weather"][0]["description"]
@@ -56,7 +56,7 @@ class Weather < Weatheritem
         else
           result = false
         end
-        dayhour = config.prezero_exclusion(day) + "日" + config.prezero_exclusion(hour) + "時"
+        dayhour = config.prezero_exclusion(day)+ "日" + config.prezero_exclusion(hour) + "時"
         weather_data.push([dayhour,w_name_ja,icon_url,w_get]) if result
       end
       @return_info = true
