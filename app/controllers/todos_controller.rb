@@ -13,7 +13,7 @@ class TodosController < ApplicationController
       @todos = Todo.where(finished:true).where(user_id:@userid).order(finishday: "DESC").paginate(page: params[:page], per_page: 25).order(created_at: "DESC")
       @kubun = 2
     elsif params[:unfinished] == "true"
-      @todos = Todo.includes(:accounts).where(finished:false).where(user_id:@userid).order(:term).paginate(page: params[:page], per_page: 20).order(created_at: "ASC")
+      @todos = Todo.includes(:accounts).where(finished:false).where(user_id:@userid).order(:term).paginate(page: params[:page], per_page: 25).order(created_at: "ASC")
       @unfinished = true
       @kubun = 1
     elsif params[:termdate].present?
