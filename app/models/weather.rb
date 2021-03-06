@@ -15,7 +15,7 @@ class Weather < Weatheritem
       now_datetime = DateTime.now
       day_today =  now_datetime.strftime("%Y-%m-%d")
       day_nextday  = (Date.today+1).strftime("%Y-%m-%d")
-      day_hour =  now_datetime.hour + 9
+      day_hour =  now_datetime.hour
       #day_hour =  21
       weather_data = []
       (0..31).each do |i|
