@@ -14,6 +14,7 @@ class TodosController < ApplicationController
       @kubun = 2
     elsif params[:unfinished] == "true"
       @todos = Todo.includes(:accounts).where(finished:false).where(user_id:@userid).order(:term).paginate(page: params[:page], per_page: 20).order(created_at: "ASC")
+      @unfinished = true
       @kubun = 1
     elsif params[:termdate].present?
       date = params[:termdate]
