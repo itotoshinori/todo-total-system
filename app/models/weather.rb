@@ -15,8 +15,8 @@ class Weather < Weatheritem
       now_datetime = DateTime.now
       day_today =  now_datetime.strftime("%Y-%m-%d")
       day_nextday  = (Date.today+1).strftime("%Y-%m-%d")
-      day_hour =  now_datetime.hour
-      #day_hour =  "15"
+      day_hour =  now_datetime.hour + 9
+      #day_hour =  21
       weather_data = []
       (0..31).each do |i|
         w_day = w_hash["list"][i]["dt_txt"].slice(0..9)
@@ -44,6 +44,7 @@ class Weather < Weatheritem
         icon_url = "http://openweathermap.org/img/wn/#{icon}#{end_word}"
         if w_day == day_today
           if (day_hour.to_i <=6 and hour == "09") or (day_hour.to_i <=12 and hour == "15") or (day_hour.to_i >12 and day_hour.to_i <=15 and hour == "18") or (day_hour.to_i >=12 and day_hour.to_i < 21 and hour == "21")
+          #if  day_hour.to_i <= 9 and hour == "12" 
             result = true
           end
         elsif  w_day == day_nextday 
@@ -55,8 +56,8 @@ class Weather < Weatheritem
         else
           result = false
         end
-        day_hour = config.prezero_exclusion(day) + "日" + config.prezero_exclusion(hour) + "時"
-        weather_data.push([day_hour,w_name_ja,icon_url,w_get]) if result
+        dayhour = config.prezero_exclusion(day) + "日" + config.prezero_exclusion(hour) + "時"
+        weather_data.push([dayhour,w_name_ja,icon_url,w_get]) if result
       end
       @return_info = true
       @information = weather_data
