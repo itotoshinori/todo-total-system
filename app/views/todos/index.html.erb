@@ -1,7 +1,9 @@
 <% if @kubun == 1 %>
   <h4>仕掛一覧
-  <% if @unfinished== true %>
+  <% if @unfinished %>
       (当日完了除く)
+  <% else %>
+      (当日完了含む)
   <% end %>
   </h4>
 <% else %>  
