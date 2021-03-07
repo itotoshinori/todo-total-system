@@ -10,7 +10,7 @@ class InquiryChatwork
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    if message.present? and num <= 3
+    if message.present? and num <= 4
       if num == 1
         title = message.blog.title
         messagetext = "[To:3775224]#{message.name}さん(#{message.email})からの「#{title}」のブログにコメントがありました。確認をお願いします。#{url}"
@@ -20,6 +20,9 @@ class InquiryChatwork
       elsif num == 3
         title = "ログインに失敗したユーザーがいます"
         messagetext = "[To:3775224]ユーザー#{message.name}のログイン失敗がありました。多発するようでしたらご注意下さい。#{url}"
+      elsif num == 4
+        title = "Udemyでバーゲン実施"
+        messagetext = "[To:3775224]Udemyでバーゲンが実施されているようです。ご確認下さい。#{url}"
       end
       http.start do
         req = Net::HTTP::Post.new(uri.path)

@@ -1,7 +1,9 @@
-
 <% weather = @weather.re_info %>
+<% if cookies[:udemy_time_check] %>
+  <b><div font-size: 25px;"><%=link_to "Udemyがバーゲン中のようです。ご確認下さい！","https://www.udemy.com/" %></div></b>
+<% end %>
 <% if weather %> 
-<%= link_to  @placename,edit_user_path(@current_user.id) %><%= %>の<%= link_to "天気予報","https://openweathermap.org/" %>
+<%= link_to  @placename,edit_user_path(@current_user.id) %>の<%= link_to "天気予報","https://openweathermap.org/" %>
  <table>
   <tr>
   <% weather.each do | datehour,word,icon,get_info,temp | %>

@@ -1,4 +1,10 @@
 class Config
+  require "open-uri"
+  require "nokogiri"
+  def initialize
+    
+  end
+
   def prezero_exclusion(num)
     num_int = num.to_i
     if num_int < 10
@@ -7,4 +13,5 @@ class Config
       num
     end
   end
+  
 end

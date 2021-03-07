@@ -29,6 +29,17 @@ class TodosController < ApplicationController
       @todos = @todos.includes(:accounts).where(user_id:@userid).order(:term).paginate(page: params[:page], per_page: 25).order(created_at: "ASC")
       @kubun = 1
     end
+    #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
+    if  cookies[:udemy_time_check].blank?
+      udemy = Udemy_check.new
+      udemy_check = udemy.check
+      cookies[:udemy_time_check] = { :value => udemy_check, :expires => 6.hours.from_now }
+      if cookies[:udemy_time_check]
+        user = User.find(@userid)
+        @chatwork = InquiryChatwork.new
+        @chatwork.push_chatwork_message(user, 4, "https://www.udemy.com/")
+      end
+    end
   end
 
   def termindex
