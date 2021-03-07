@@ -4,14 +4,15 @@
 <%= link_to  @placename,edit_user_path(@current_user.id) %><%= %>の<%= link_to "天気予報","https://openweathermap.org/" %>
  <table>
   <tr>
-  <% weather.each do | datehour,word,icon,get_info | %>
+  <% weather.each do | datehour,word,icon,get_info,temp | %>
     <td valign="top" >
       <div style="font-size: 11px; text-align: center;">
         <%= datehour %><br />
         <% if get_info %>
           <%#= image_tag "/gazou/#{icon}",:size => '50x50'%>
           <%= image_tag icon,:size => '50x50'%><br />
-          <%=word %>
+          <%=word %><br />
+          <%=temp %>℃
         <% else %>
           <%= word %>
         <% end %>
