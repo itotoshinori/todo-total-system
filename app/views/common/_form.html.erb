@@ -1,6 +1,6 @@
 <% weather = @weather.re_info %>
-<% if cookies[:udemy_time_check] %>
-<%# if @udemy_check %>
+<% if cookies[:udemy_time_check].present? and cookies[:udemy_time_check] %>
+<%# if @udemy_check.present? %>
   <b><div font-size: 25px;"><%=link_to "Udemyがバーゲン中のようです。ご確認下さい！","https://www.udemy.com/" %></div></b>
 <% end %>
 <% if weather %> 
