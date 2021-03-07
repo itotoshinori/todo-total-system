@@ -1,7 +1,7 @@
 
 <% weather = @weather.re_info %>
 <% if weather %> 
-<%= link_to @placename,"https://openweathermap.org/" %>の天気予報
+<%= link_to  @placename,edit_user_path(@current_user.id) %><%= %>の<%= link_to "天気予報","https://openweathermap.org/" %>
  <table>
   <tr>
   <% weather.each do | datehour,word,icon,get_info | %>

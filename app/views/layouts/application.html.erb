@@ -94,7 +94,6 @@
                 <li><a href="/login/logout">ログアウト</a></li>
                 <li><%= link_to "パスワード変更",edit_user_path(cookies[:userid]) %></li>
                 <li><a href="https://calendar.google.com/calendar/" target="new">google calendar</a></li>
-                <%# if User.find(cookies[:userid].to_i).admin == true %>
                 <% if cookies[:userid].to_i == 1 %>
                   <li><a href="/users/new">新規会員登録</a></li>
                   <li><a href="/blogs/new">ブログ新規</a></li>
