@@ -30,7 +30,7 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
-    if  cookies[:udemy_time_check].blank?
+    if  cookies[:udemy_time_check].blank? and @userid.to_s == "1"
       udemy = Udemy_check.new
       udemy_check = udemy.check
       cookies[:udemy_time_check] = { :value => udemy_check, :expires => 6.hours.from_now }
