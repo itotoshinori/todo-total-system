@@ -30,25 +30,14 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
-    if cookies[:udemy_time_check].blank? and request.os == 'Android' and @userid.to_s == "1"
+    if cookies[:udemy_time_check45].blank? and request.os == 'Android' and @userid.to_s == "1"
       begin
         scrap = Scrap_check.new
         url = "https://www.udemy.com/ja"
-        udemy_check = scrap.check(url,"対象コース","セール","セール")
-        cookies[:udemy_time_check] = { :value => udemy_check, :expires => 1.days.from_now }
-        if cookies[:udemy_time_check] 
-          #バーゲン時はTodoに自動的に購入検討をタスクを新規で入力
-          content = "<a href=#{url}>Udemy</a>"
-          @todo = Todo.new(title:"Udemyバーゲン購入検討",term:@date,body:content,user_id:@userid)
-          if @todo.save
-            user = User.find(@userid)
-            flash[:success]="#{@todo.title}が新規登録されました"
-            @chatwork = InquiryChatwork.new
-            @chatwork.push_chatwork_message(user, 4, url)
-          else
-            flash[:danger]="#{@todo.title}の登録が失敗しました"
-          end
-        end
+        title = "Udemyバーゲン購入検討"
+        udemy_check = scrap.check(@userid,url,title,"対象コース","セール","セール")
+        cookies[:udemy_time_check45] = { :value => true, :expires => 1.days.from_now } 
+        flash[:success]="#{title}が新規登録されました" if udemy_check
       rescue => exception
         udemy_check = false
       end
