@@ -30,20 +30,28 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
-    if cookies[:udemy_time_check].blank?
-      begin
+    if cookies[:udemy_time_check22].blank?
+      #begin
         scrap = Scrap_check.new
         url = "https://www.udemy.com/ja"
         udemy_check = scrap.check(url,"対象コース","セール","セール")
-        cookies[:udemy_time_check] = { :value => udemy_check, :expires => 1.days.from_now }
-        if cookies[:udemy_time_check] and request.os == 'Windows 8.1' and @userid.to_s == "1"
-          user = User.find(@userid)
-          @chatwork = InquiryChatwork.new
-          @chatwork.push_chatwork_message(user, 4, url)
+        cookies[:udemy_time_check22] = { :value => udemy_check, :expires => 1.days.from_now }
+        if cookies[:udemy_time_check22] and request.os == 'Android' and @userid.to_s == "1"
+          #バーゲン時は自動的に購入検討を新規で入力
+          content = "<a href=#{url}>Udemy</a>"
+          @todo = Todo.new(title:"Udemyバーゲン購入検討",term:@date,body:content,user_id:@userid)
+          if @todo.save
+            user = User.find(@userid)
+            flash[:success]="#{@todo.title}が新規登録されました"
+            @chatwork = InquiryChatwork.new
+            @chatwork.push_chatwork_message(user, 4, url)
+          else
+            flash[:danger]="#{@todo.title}の登録が失敗しました"
+          end
         end
-      rescue => exception
-        udemy_check = false
-      end
+      #rescue => exception
+        #udemy_check = false
+      #end
     end
   end
 
@@ -56,7 +64,7 @@ class TodosController < ApplicationController
     now = Time.current  
     sdate = now
     sdate = params[:gday].to_date if params[:section] == "1"
-    @sdate  =Date.new(sdate.year, sdate.month, sdate.day)
+    @sdate  = Date.new(sdate.year, sdate.month, sdate.day)
     @todo = Todo.new
   end
   
