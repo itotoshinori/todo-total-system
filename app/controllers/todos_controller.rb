@@ -30,7 +30,7 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
-    if  cookies[:udemy_time_check].blank?
+    if cookies[:udemy_time_check2].blank?
       begin
         scrap = Scrap_check.new
         url = "https://www.udemy.com/ja"
