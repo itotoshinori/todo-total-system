@@ -30,14 +30,15 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
-    if  cookies[:udemy_time_check].blank? and @userid.to_s == "1"
-      udemy = Udemy_check.new
-      udemy_check = udemy.check
+    if  cookies[:udemy_time_check].blank?
+      scrap = Scrap_check.new
+      url = "https://www.udemy.com/ja"
+      udemy_check = scrap.check(url,"対象コース","セール","セール")
       cookies[:udemy_time_check] = { :value => udemy_check, :expires => 6.hours.from_now }
       if cookies[:udemy_time_check]
         user = User.find(@userid)
         @chatwork = InquiryChatwork.new
-        @chatwork.push_chatwork_message(user, 4, "https://www.udemy.com/")
+        @chatwork.push_chatwork_message(user, 4, url)
       end
     end
   end

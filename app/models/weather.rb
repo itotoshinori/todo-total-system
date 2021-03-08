@@ -7,7 +7,7 @@ class Weather < Weatheritem
   BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
   
   def initialize(placecode)
-    #begin
+    begin
       config = Config.new
       id = placecode
       response = open(BASE_URL + "?id=#{id}&units=metric&APPID=#{API_KEY}")
@@ -63,15 +63,14 @@ class Weather < Weatheritem
       end
       @return_info = true
       @information = weather_data
-    #rescue => exception
-      #@return_info = false
-      #@information = false
-    #end
+    rescue => exception
+      @return_info = false
+      @information = false
+    end
   end
 
   def return_info
-    @udemy_check
-    #@return_info 
+    @return_info 
   end
   def re_info
     @information
