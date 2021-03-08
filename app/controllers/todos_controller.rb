@@ -31,14 +31,18 @@ class TodosController < ApplicationController
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
     if  cookies[:udemy_time_check].blank?
-      scrap = Scrap_check.new
-      url = "https://www.udemy.com/ja"
-      udemy_check = scrap.check(url,"対象コース","セール","セール")
-      cookies[:udemy_time_check] = { :value => udemy_check, :expires => 6.hours.from_now }
-      if cookies[:udemy_time_check]
-        user = User.find(@userid)
-        @chatwork = InquiryChatwork.new
-        @chatwork.push_chatwork_message(user, 4, url)
+      begin
+        scrap = Scrap_check.new
+        url = "https://www.udemy.com/ja"
+        udemy_check = scrap.check(url,"対象コース","セール","セール")
+        cookies[:udemy_time_check] = { :value => udemy_check, :expires => 1.days.from_now }
+        if cookies[:udemy_time_check] and request.os == 'Windows 8.1' and @userid.to_s == "1"
+          user = User.find(@userid)
+          @chatwork = InquiryChatwork.new
+          @chatwork.push_chatwork_message(user, 4, url)
+        end
+      rescue => exception
+        udemy_check = false
       end
     end
   end

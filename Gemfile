@@ -19,6 +19,7 @@ gem 'holiday_japan'
 gem 'faraday'
 gem 'react-rails'
 gem 'webpacker'
+gem 'rack-user_agent'
 #gem 'rspec-rails'
 
 
