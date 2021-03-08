@@ -30,13 +30,13 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
-    if cookies[:udemy_time_check25].blank? and request.os == 'Android' and @userid.to_s == "1"
+    if cookies[:udemy_time_check].blank? and request.os == 'Android' and @userid.to_s == "1"
       begin
         scrap = Scrap_check.new
         url = "https://www.udemy.com/ja"
         udemy_check = scrap.check(url,"対象コース","セール","セール")
-        cookies[:udemy_time_check25] = { :value => udemy_check, :expires => 1.days.from_now }
-        if cookies[:udemy_time_check25] 
+        cookies[:udemy_time_check] = { :value => udemy_check, :expires => 1.days.from_now }
+        if cookies[:udemy_time_check] 
           #バーゲン時はTodoに自動的に購入検討をタスクを新規で入力
           content = "<a href=#{url}>Udemy</a>"
           @todo = Todo.new(title:"Udemyバーゲン購入検討",term:@date,body:content,user_id:@userid)
