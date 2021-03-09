@@ -37,7 +37,7 @@ class TodosController < ApplicationController
         #url = "http://titonet384.sakura.ne.jp/kokuho/"
         title = "Udemyバーゲン購入検討"
         #title = "関西歴史建造物"
-        @udemy_check = @scrap.check(@userid,url,title,"セール","法隆寺","セール")
+        @udemy_check = @scrap.check(@userid,url,title,"宮本武蔵","対象コース","セール")
         #debugger
         cookies[:udemy_time_check58] = { :value => @udemy_check, :expires => 1.days.from_now } 
         flash[:success] = "#{title}が新規登録されました" if udemy_check
