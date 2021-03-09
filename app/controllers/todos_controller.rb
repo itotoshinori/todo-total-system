@@ -30,7 +30,7 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
-    #if cookies[:udemy_time_check58].blank? #and request.os == 'Android' and @userid.to_s == "1"
+    if cookies[:udemy_time_check58].blank? #and request.os == 'Android' and @userid.to_s == "1"
       begin
         @scrap = Scrap_check.new
         url = "https://www.udemy.com/ja"
@@ -44,7 +44,7 @@ class TodosController < ApplicationController
       rescue => exception
         udemy_check = false
       end
-    #end
+    end
   end
 
   def termindex
