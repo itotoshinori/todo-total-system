@@ -1,7 +1,9 @@
 <% weather = @weather.re_info %>
-<%=@scrap.check_gyou %>
-<%=@scrap.check_gyou2 %>
-<%=@scrap.check_gyou3 %><br />
+<% if @scrap.present? %>
+  <%=@scrap.check_gyou %>
+  <%=@scrap.check_gyou2 %>
+  <%=@scrap.check_gyou3 %><br />
+<% end %>
 <% if weather %> 
 <%= link_to  @placename,edit_user_path(@current_user.id) %>の<%= link_to "天気予報","https://openweathermap.org/" %>
  <table>
