@@ -12,7 +12,7 @@ class Scrap_check
     @coment = div_list.to_s.index(content1)
     @coment2 = div_list.to_s.index(content2)
     @coment3 = div_list.to_s.index(content3)
-    if coment.to_i > 0 or coment2.to_i > 0  or coment3.to_i > 0
+    if @coment.to_i > 0 or @coment2.to_i > 0  or @coment3.to_i > 0
       #バーゲン時はTodoに自動的に購入検討をタスクを新規で入力及びチャットワーク登録でプッシュ通知
       content = "<a href=#{url}>#{name}</a>"
       @todo = Todo.create(title:name,term:today,body:content,user_id:userid)
