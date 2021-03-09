@@ -1,5 +1,5 @@
 <% weather = @weather.re_info %>
-<%=@udemy_check %>
+<%=@scrap.check_gyou %>
 <% if weather %> 
 <%= link_to  @placename,edit_user_path(@current_user.id) %>の<%= link_to "天気予報","https://openweathermap.org/" %>
  <table>
