@@ -33,9 +33,11 @@ class TodosController < ApplicationController
     #if cookies[:udemy_time_check58].blank? #and request.os == 'Android' and @userid.to_s == "1"
       begin
         @scrap = Scrap_check.new
-        url = "https://www.udemy.com/ja"
-        title = "Udemyバーゲン購入検討"
-        @udemy_check = @scrap.check(@userid,url,title,"セール","セール","セール")
+        #url = "https://www.udemy.com/ja"
+        url = "http://titonet384.sakura.ne.jp/kokuho/"
+        #title = "Udemyバーゲン購入検討"
+        title = "関西歴史建造物"
+        @udemy_check = @scrap.check(@userid,url,title,"セール","法隆寺","セール")
         #debugger
         cookies[:udemy_time_check58] = { :value => @udemy_check, :expires => 1.days.from_now } 
         flash[:success] = "#{title}が新規登録されました" if udemy_check
