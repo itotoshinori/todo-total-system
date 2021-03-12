@@ -30,22 +30,22 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
-    if cookies[:udemy_time_check].blank? and request.os == 'Android' and @userid.to_s == "1"
+    #if cookies[:udemy_time_check].blank? and request.os == 'Android' and @userid.to_s == "1"
       begin
         @scrap = Scrap_check.new
         url = "https://www.udemy.com/ja"
         #url = "http://titonet384.sakura.ne.jp/kokuho/"
         title = "Udemyバーゲン購入検討"
         #title = "関西歴史建造物" テスト用
-        @udemy_check = @scrap.check(@userid,url,title,"セール","対象コースが","バーゲン")
+        @udemy_check = @scrap.check(@userid,url,title,"セール","対象コースが￥","バーゲン")
         cookies[:udemy_time_check] = { :value => @udemy_check, :expires => 24.hours.from_now } 
         flash[:success] = "#{title}が新規登録されました" if @udemy_check
       rescue => exception
         udemy_check = false
       end
       @tv_schedule = Tv_schedule.new.schedule_add(@userid)
-    end
-    @tv_schedule = Tv_schedule.new.schedule_add(@userid)
+    #end
+    #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
   end
 
   def termindex
