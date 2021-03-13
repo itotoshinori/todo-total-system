@@ -80,8 +80,11 @@
   <% title_convert = convert(@todo.title) %>
   <% convert_day = convert_day(@todo.term) %><br />
   <% convert_time = convert_time(@todo.starttime) %>
-  <% finishtime= @todo.starttime.since(5400.seconds) %>
-  <% convert_finish_time = convert_time(finishtime) %>
+  <% if @todo.finishtime %>
+    <% convert_finish_time = convert_time(@todo.finishtime) %>
+  <% else %>
+    <% convert_finish_time = convert_time(@todo.starttime.since(5400.seconds)) %>
+  <% end %>
   <span class="label label-warning">
     <% if @todo.body.present? %>
       <%= link_to "googleカレンダー登録","https://www.google.com/calendar/render?action=TEMPLATE&text=#{title_convert}&&dates=#{convert_day}T#{convert_time}00/#{convert_day}T#{convert_finish_time}00&details=#{request.url}", target: "_new" %>

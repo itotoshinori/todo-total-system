@@ -49,14 +49,15 @@ class Tv_schedule
             shutuen.each do |tv_shutuen, tv_company, tv_shutuen_datetime|
               tv_date = Date.parse(tv_shutuen_datetime[0,10])
               tv_time = tv_shutuen_datetime[13,6]
+              tv_finishtime = tv_shutuen_datetime[20,6]
               #@todo_count = Todo.where('title like ?',tv_shutuen).where(term:tv_date).count
               todo_count = Todo.where('title like ?',"%#{tv_shutuen}%").where(term:tv_date).count
               #todo_count = tv_shutuen + tv_date.to_s
               if todo_count == 0
                 link = "<a href=#{url}>ザテレビジョン</a>"
                 tv_shutuen_name = tv_shutuen + " " + name + "出演番組" + " " + tv_company
-                @todo = Todo.new(title:tv_shutuen_name, term:tv_date,starttime:tv_time,body:link,user_id:userid)
-                @top_dis = top_dis.push([tv_shutuen_name, "(" +tv_date.to_s+ " "  + tv_time.to_s + ")からのテレビデータが追加されました"]) if @todo.save
+                @todo = Todo.new(title:tv_shutuen_name, term:tv_date, starttime:tv_time, finishtime:tv_finishtime, body:link, user_id:userid)
+                @top_dis = top_dis.push([tv_shutuen_name, "(" +tv_date.to_s+ " "  + tv_time.to_s + "～" + tv_finishtime + ")のテレビデータが追加されました"]) if @todo.save
               end
             end
           end
