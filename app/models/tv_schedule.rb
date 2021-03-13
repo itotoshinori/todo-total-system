@@ -10,8 +10,10 @@ class Tv_schedule
       #["新垣結衣","1000021348"],["有吉弘行","0000096561"],,["おいでやす小田","1000085039"]#["宅麻伸","0000000471"]2000009546山崎武司のテレビ山崎武司のテレビ1000058631["高橋茂雄","1000002027"],["杉村太蔵","1000047120"],
       ["中田敦彦","1000042081"],["橋下徹","1000003362"],
       ["ムロツヨシ","1000044428"],["ぱるる","1000084644"],
-       ["山本太郎","0000005653"],["三浦瑠麗","2000002308"],
-       ["池上彰","0000226370"]#["山口真由","2000016994"]
+       ["山本太郎","0000005653"],["三浦瑠麗","2000002308"],["木南晴夏","1000020942"],
+       ["吉田羊","1000061502"],
+       #["佐藤二朗","0000127081"],["マツコ","1000045911"],["西田敏行","0000000881"],
+       #0000127081["池上彰","0000226370"]#["山口真由","2000016994"]
       
     ]
     max = talents.length - 1
@@ -50,7 +52,7 @@ class Tv_schedule
             todo_count = Todo.where('title like ?',"%#{tv_shutuen}%").where(term:tv_date).count
             #todo_count = tv_shutuen + tv_date.to_s
             if todo_count == 0
-              link = "<a href=#{url}>TVガイド</a>"
+              link = "<a href=#{url}>ザテレビジョン</a>"
               tv_shutuen_name = tv_shutuen + " " + name + "出演番組" + " " + tv_company
               @todo = Todo.new(title:tv_shutuen_name, term:tv_date,starttime:tv_time,body:link,user_id:userid)
               @top_dis = top_dis.push([tv_shutuen_name, "(" +tv_date.to_s+ " "  + tv_time.to_s + ")からのテレビデータが追加されました"]) if @todo.save
