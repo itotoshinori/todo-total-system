@@ -37,9 +37,12 @@ class TodosController < ApplicationController
         #url = "http://titonet384.sakura.ne.jp/kokuho/"
         title = "Udemyバーゲン購入検討"
         #title = "関西歴史建造物" テスト用
-        @udemy_check = @scrap.check(@userid,url,title,"セール","対象コースが￥","バーゲン")
+        todo_count = Todo.where('title like ?',"%#{title}%").where(term:@date).count
+        if todo_count == 0
+          @udemy_check = @scrap.check(@userid,url,title,"セール","対象コースが￥","バーゲン")
+          flash[:success] = "#{title}が新規登録されました" if @udemy_check
+        end
         cookies[:udemy_time_check668] = { :value => @udemy_check, :expires => 3.hours.from_now } 
-        flash[:success] = "#{title}が新規登録されました" if @udemy_check
       rescue => exception
         udemy_check = false
       end
