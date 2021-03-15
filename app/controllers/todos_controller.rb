@@ -30,7 +30,7 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
-    #if cookies[:udemy_time_check668].blank? and @userid.to_s == "1" #and request.os == 'Android'
+    if cookies[:udemy_time_check668].blank? and @userid.to_s == "1" #and request.os == 'Android'
       begin
         @scrap = Scrap_check.new
         url = "https://www.udemy.com/ja"
@@ -44,7 +44,7 @@ class TodosController < ApplicationController
         udemy_check = false
       end
       @tv_schedule = Tv_schedule.new.schedule_add(@userid)
-    #end
+    end
     #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
   end
 
