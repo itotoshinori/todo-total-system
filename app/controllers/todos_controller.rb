@@ -30,7 +30,7 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
-    if cookies[:udemy_time_check668].blank? and @userid.to_s == "1" #and request.os == 'Android'
+    if cookies[:udemy_time_check669].blank? and @userid.to_s == "1" #and request.os == 'Android'
       begin
         @scrap = Scrap_check.new
         url = "https://www.udemy.com/ja"
@@ -39,10 +39,10 @@ class TodosController < ApplicationController
         #title = "関西歴史建造物" テスト用
         todo_count = Todo.where('title like ?',"%#{title}%").where(term:@date).count
         if todo_count == 0
-          @udemy_check = @scrap.check(@userid,url,title,"セール","対象コースが￥","バーゲン")
+          @udemy_check = @scrap.check(@userid,url,title,"セール","対象コースが","バーゲン")
           flash[:success] = "#{title}が新規登録されました" if @udemy_check
         end
-        cookies[:udemy_time_check668] = { :value => @udemy_check, :expires => 3.hours.from_now } 
+        cookies[:udemy_time_check669] = { :value => @udemy_check, :expires => 3.hours.from_now } 
       rescue => exception
         udemy_check = false
       end
