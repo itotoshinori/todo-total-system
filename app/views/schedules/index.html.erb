@@ -44,7 +44,7 @@
     <% times=dayev.starttime %>
     <%=times.strftime("%H:%M") %>-
     <% if dayev.body.present? %>
-      <span class="badge badge-pill badge-info">添</span>
+      🔗
     <% end %>
     <%=link_to mojiseigen(dayev.title,18),"/todos/#{dayev.id}" %>
     <br>
