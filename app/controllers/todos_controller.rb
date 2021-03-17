@@ -30,7 +30,7 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
-    if cookies[:time_check1].blank? and @userid.to_s == "1" #and request.os == 'Android'
+    if cookies[:time_check10].blank? and @userid.to_s == "1" #and request.os == 'Android'
       begin
         url = "https://www.udemy.com/ja"
         #url = "http://titonet384.sakura.ne.jp/kokuho/"
@@ -44,7 +44,7 @@ class TodosController < ApplicationController
         else
           flash[:success] = "Udemyの対象がありません"
         end
-        cookies[:time_check1] = { :value => "check", :expires => 1.hours.from_now } 
+        cookies[:time_check10] = { :value => "check", :expires => 1.hours.from_now } 
       rescue => exception
         udemy_check = false
       end
