@@ -42,7 +42,7 @@ class TodosController < ApplicationController
           @udemy_check = @scrap.check(@userid,url,title,"セール","対象コースが","バーゲン")
           flash[:success] = "#{title}が新規登録されました" if @udemy_check
         else
-          flash[:success] = "対象がありません"
+          flash[:success] = "Udemyの対象がありません"
         end
         cookies[:time_check1] = { :value => "check", :expires => 1.hours.from_now } 
       rescue => exception
@@ -50,7 +50,7 @@ class TodosController < ApplicationController
       end
       @tv_schedule = Tv_schedule.new.schedule_add(@userid)
     end
-    @tv_schedule = Tv_schedule.new.schedule_add(@userid)
+    #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
   end
 
   def termindex
