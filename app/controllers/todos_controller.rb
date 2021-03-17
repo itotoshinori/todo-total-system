@@ -44,7 +44,7 @@ class TodosController < ApplicationController
         else
           flash[:success] = "Udemyの対象がありません"
         end
-        cookies[:time_check11] = { :value => "check", :expires => 1.minutes.from_now } 
+        cookies[:time_check11] = { :value => "check", :expires => 10.minutes.from_now } 
       rescue => exception
         udemy_check = false
       end
