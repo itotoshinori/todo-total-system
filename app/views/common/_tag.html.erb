@@ -4,6 +4,7 @@
     本文にタグを挿入する
   </a>
   <button id="important" type="button">重要</button>
+  <button id="cancel" type="button">cancel</button>
 </div>
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
@@ -60,6 +61,14 @@
   $("#important").click( function() {
     // 追記するデータを定義しておきます
     var addText = "🚩";
+    // テキストボックスのデータを取得します
+    var getData = String($("#title").val());
+    // 取得データと追記文言をくっつけて出力します
+    $("#title").val( addText + getData );
+  });
+   $("#cancel").click( function() {
+    // 追記するデータを定義しておきます
+    var addText = "🙅";
     // テキストボックスのデータを取得します
     var getData = String($("#title").val());
     // 取得データと追記文言をくっつけて出力します
