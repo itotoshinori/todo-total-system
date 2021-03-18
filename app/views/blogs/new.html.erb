@@ -1,7 +1,7 @@
  <%= form_for(@blog) do |f| %>
     <p></p>
       <%= f.label :ブログタイトル %><br>
-      <%= f.text_field :title, placeholder: 'タイトル(必須)'  %>
+      <%= f.text_field :title, placeholder: 'タイトル(必須)',id:'title'%>
       <p>
       <%= f.label :ブログ記事 %><br>
       <%= f.text_area :content, placeholder: '記事(必須)', id:"body",cols:65,rows:10 %><br>
