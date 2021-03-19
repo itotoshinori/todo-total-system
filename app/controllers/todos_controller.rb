@@ -48,9 +48,11 @@ class TodosController < ApplicationController
       rescue => exception
         udemy_check = false
       end
-      @tv_schedule = Tv_schedule.new.schedule_add(@userid)
+      #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
+      #@tv_schedule = Tv_guid.new.schedule_add(@userid)
     end
     #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
+    @tv_schedule = Tv_guide.new.schedule_add(@userid)
   end
 
   def termindex
