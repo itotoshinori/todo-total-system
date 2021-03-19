@@ -1,6 +1,6 @@
 class Tv_guide
   def schedule_add(userid)
-    target_list = ["新庄剛志","古田淳也","橋下徹","堀江貴文","織田信長","落合陽一","武田邦彦","平家","源氏","家康","秀吉","元寇","チンギス","ナポレオン","奴隷貿易","香港","ドナルド・トランプ","須田慎一郎","里崎智也","松村邦洋","サッカー日本代表"]
+    target_list = ["平家","源氏","織田信長","徳川家康","豊臣秀吉","元寇","チンギス","ナポレオン","奴隷貿易","香港","ドナルド・トランプ","サッカー日本代表"]
     dis_titles = []
     target_list.each do |target|
       taeget = URI.encode_www_form(keyword: target)
