@@ -11,8 +11,8 @@
 <% end %>
 <% if @tv_schedule %>
 ●指定タレントの出演番組が自動的に登録されました<br />
-  <% @tv_schedule.each do |tv_schedule| %>
-    ■<%=tv_schedule %><br />　<%#=date %><br />
+  <% @tv_schedule.each do |tv_schedule,date| %>
+    ■<%=tv_schedule %><br />　<%=date %><br />
   <% end %>
 <% end %>
 <% if @tv_schedule2 %>
