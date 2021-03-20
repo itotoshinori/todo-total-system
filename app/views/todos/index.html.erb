@@ -15,10 +15,11 @@
     ■<%=tv_schedule %><br />　<%=date %><br />
   <% end %>
 <% end %>
-<% if @tv_schedule2 %>
+
+<% if @tv_schedule2.present? %>
 ●指定タレントの出演番組が自動的に登録されました<br />
-  <% @tv_schedule.each do |tv_schedule| %>
-    ■<%=tv_schedule %><br />　<%#=date %><br />
+  <% @tv_schedule2.each do |date,tv_schedule| %>
+    ■<%=date %><%=tv_schedule %><br />
   <% end %>
 <% end %>
 <div><%= react_component("HelloWorld", { greeting:"" }) %></div> 

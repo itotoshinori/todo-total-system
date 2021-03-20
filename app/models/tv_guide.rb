@@ -1,7 +1,10 @@
+
+
 class Tv_guide
   def schedule_add(userid)
-    target_list = ["平家","源氏","織田信長","徳川家康","豊臣秀吉","元寇","チンギス","ナポレオン","奴隷貿易","香港","ドナルド・トランプ","サッカー日本代表"]
-    dis_titles = []
+    target_list = ["新庄剛志","金村義明","江本孟紀","池澤あやか","中田敦彦","杉原杏璃","豊田真由子","八田亜矢子","サッカー日本代表","織田信長","橋下徹","武田邦彦","豊臣秀吉","堀江貴文","堺雅人","吉永小百合","蒼井優","黒木華","役所広司","平清盛","国宝","五重塔","天守閣","松村邦彦"] 
+    main_titles = []
+    tV_program = []
     target_list.each do |target|
       taeget = URI.encode_www_form(keyword: target)
       url = "https://www.tvkingdom.jp/schedulesBySearch.action?stationPlatformId=1&condition.#{taeget}"
@@ -9,35 +12,36 @@ class Tv_guide
       html = URI.open(url).read
       doc = Nokogiri::HTML.parse(html) 
       tv_title = doc.css('div.utileList').css('a')
+      #puts tv_title.text
       detail = doc.css('p.utileListProperty')
-      detail_array = []
-      detail.each do |detailtext|
-        detail_array.push(detailtext.text) 
+      text_an = []
+      doc.css('a').each do |anchor|
+        text_an.push([anchor.text,anchor[:href]]) if anchor.to_s.include?("/schedule/")
       end
-      i = 0
-      tv_title.each do |out|
-        title = out.text.strip
-        if  title.length > 11 
-          date =  detail_array[i]
-          tv_company = date[50..70].strip 
-          anaus_date = Date.parse(date[0..8]).to_s
-          db_title = title  + " " + tv_company + "" + target + "　テレビ"
-          dis_title =  anaus_date + db_title
-          stattime = date[13..17].strip
-          finishtime = date[20..28].strip
-          todo_count = Todo.where('title like ?',"%#{title}%").where(term:anaus_date).count
+      if text_an.count > 0
+        detail = doc.css('div.utileList')
+        detail_array = []
+        detail.each do |content_text|
+          detail_array.push(content_text) 
+        end  
+        detail_array.each do |content|
+          title = content.css('h2').text
+          url = content.css("a")[0][:href]
+          detail = content.css("p.utileListProperty")
+          date = Date.parse(detail.text[0..6]).to_s
+          starttime = detail.text[12..17].strip
+          finishtime = detail.text[20..29].strip
+          tv_company = detail.text[50..70].strip
+          db_title = title + tv_company + "keyword:" + target
+          todo_count = Todo.where('title like ?',"%#{title}%").where(term:date).count
           if todo_count == 0
-            link = "<a href=https://www.tvkingdom.jp#{out[:href]}>テレビ王国</a>"
-            @todo = Todo.new(title:db_title, term:anaus_date, starttime:stattime, finishtime:finishtime, body:link, user_id:userid)
-            dis_titles.push(dis_title) if @todo.save
-          end
+            link = "<a href=https://www.tvkingdom.jp#{url}>テレビ王国</a>"
+            @todo = Todo.new(title:db_title, term:date, starttime:starttime, finishtime:finishtime, body:link, user_id:userid)
+            tV_program.push([date.to_s + " "  + starttime + "〜" + finishtime , title + tv_company +"word:" + target]) if @todo.save
+          end 
         end
-      end 
+      end
     end
-    if dis_titles
-      dis_titles
-    else
-      dis_titles　= "該当がありません"
-    end
+    tV_program
   end
 end
