@@ -52,7 +52,7 @@ class TodosController < ApplicationController
       @tv_schedule2 = Tv_guide.new.schedule_add(@userid)
     end
     #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
-    #@tv_schedule2 = Tv_guide.new.schedule_add(@userid)
+    @tv_schedule2 = Tv_guide.new.schedule_add(@userid)
   end
 
   def termindex
