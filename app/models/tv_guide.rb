@@ -12,7 +12,6 @@ class Tv_guide
       html = URI.open(url).read
       doc = Nokogiri::HTML.parse(html) 
       tv_title = doc.css('div.utileList').css('a')
-      #puts tv_title.text
       detail = doc.css('p.utileListProperty')
       text_an = []
       doc.css('a').each do |anchor|

@@ -44,12 +44,17 @@ class TodosController < ApplicationController
         else
           flash[:success] = "Udemyの対象がありません"
         end
-        cookies[:time_check11] = { :value => "check", :expires => 720.minutes.from_now } 
+        cookies[:time_check11] = { :value => "check", :expires => 120.minutes.from_now } 
       rescue => exception
         udemy_check = false
       end
-      #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
-      @tv_schedule2 = Tv_guide.new.schedule_add(@userid)
+      begin
+        #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
+        @tv_schedule2 = Tv_guide.new.schedule_add(@userid)
+      rescue => exception
+        #@tv_schedule = ["ERROR","TV番組取得時エラーがでました"]
+        @tv_schedule2 = ["ERROR","TV番組取得時エラーがでました"]
+      end
     end
     #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
     #@tv_schedule2 = Tv_guide.new.schedule_add(@userid)
