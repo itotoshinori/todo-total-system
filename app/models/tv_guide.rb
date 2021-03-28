@@ -33,7 +33,7 @@ class Tv_guide
           tv_company = detail.text[50..70].strip
           db_title = title + tv_company + "keyword:" + target
           todo_count = Todo.where('title like ?',"%#{title}%").where(term:date).count
-          if todo_count == 0
+          if todo_count == 0 and title.include?("[再]") == false
             link = "<a href=https://www.tvkingdom.jp#{url}>テレビ王国</a>"
             @todo = Todo.new(title:db_title, term:date, starttime:starttime, finishtime:finishtime, body:link, user_id:userid)
             tV_program.push([date.to_s + " "  + starttime + "〜" + finishtime , title + tv_company +"word:" + target]) if @todo.save
