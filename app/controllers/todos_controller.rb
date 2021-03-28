@@ -30,27 +30,27 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     #Udemyのバーゲンチェック　バーゲンだったら表示＆チャットワーク送信
-    if cookies[:time_check11].blank? #and @userid.to_s == "1" #and request.os == 'Android'
-      begin
-        url = "https://www.udemy.com/ja"
+    if cookies[:time_check11].blank? and @userid.to_s == "1" #and request.os == 'Android'
+      #begin
+        #url = "https://www.udemy.com/ja"
         #url = "http://titonet384.sakura.ne.jp/kokuho/"
-        title = "Udemyバーゲン購入検討"
+        #title = "Udemyバーゲン購入検討"
         #title = "関西歴史建造物" テスト用
-        todo_count = Todo.where('title like ?',"%#{title}%").where(term:@date).count
-        if todo_count == 0
-          @scrap = Scrap_check.new
-          @udemy_check = @scrap.check(@userid,url,title,"セール","対象コースが","バーゲン")
-          flash[:success] = "#{title}が新規登録されました" if @udemy_check
-        else
-          flash[:success] = "Udemyの対象がありません"
-        end
-        cookies[:time_check11] = { :value => "check", :expires => 360.minutes.from_now } 
-      rescue => exception
-        udemy_check = false
-      end
+        #todo_count = Todo.where('title like ?',"%#{title}%").where(term:@date).count
+        #if todo_count == 0
+          #@scrap = Scrap_check.new
+          #@udemy_check = @scrap.check(@userid,url,title,"セール","対象コースが","バーゲン")
+          #flash[:success] = "#{title}が新規登録されました" if @udemy_check
+        #else
+          #flash[:success] = "Udemyの対象がありません"
+        #end
+      #rescue => exception
+        #udemy_check = false
+      #end
       begin
         #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
         @tv_schedule2 = Tv_guide.new.schedule_add(@userid)
+        cookies[:time_check11] = { :value => "check", :expires => 360.minutes.from_now } 
       rescue => exception
         #@tv_schedule = ["ERROR","TV番組取得時エラーがでました"]
         @tv_schedule2 = ["ERROR","TV番組取得時エラーがでました"]
