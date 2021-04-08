@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import * as FooBar from "./FooBar"
 var today = new Date();
 var todayDay = today.getMonth() + 1
 var dayOfWeek = today.getDay();
@@ -14,14 +13,13 @@ class HelloWorld extends React.Component
   }
   render()
   {
-    let thisday = today.getFullYear() + "年" + todayDay + "月" + today.getDate() + "日"
+    let thisday = today.getFullYear() + "年" + todayDay + "月" + today.getDate() + "日" 
     let greeting = this.state.aisatu
     if ( today.getHours() >= 19 || today.getHours() <= 3 ) {
       greeting = "こんばんは!"
     } else if ( today.getHours() >= 10 ) {
       greeting = "こんにちは!"
     }
-
     return (
       <React.Fragment>
         {greeting}
@@ -30,8 +28,5 @@ class HelloWorld extends React.Component
     );
   }
 }
-
-HelloWorld.propTypes = {
-  greeting: PropTypes.string
-};
+ 
 export default HelloWorld
