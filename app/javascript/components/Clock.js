@@ -27,7 +27,7 @@ class Clock extends React.Component{
   render() {
     return (
       <div>
-        <div>現在の時刻 {this.state.date.toLocaleTimeString()}.</div>
+        <div>現在の時刻は: {this.state.date.toLocaleTimeString()}.</div>
       </div>
     );
   }

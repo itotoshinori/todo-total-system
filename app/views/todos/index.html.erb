@@ -1,13 +1,13 @@
 <% if @kubun == 1 %>
-  <h4>仕掛一覧
+  <h3>仕掛一覧
   <% if @unfinished %>
       (当日完了除く)
   <% else %>
       (当日完了含む)
   <% end %>
-  </h4>
+  </h3>
 <% else %>  
-  <h4>完了一覧</h4>
+  <h3>完了一覧</h3>
 <% end %>
 <% if @tv_schedule %>
 ●指定タレントの出演番組が自動的に登録されました<br />
@@ -21,8 +21,8 @@
     ■<%=date %><%=tv_schedule %><br />
   <% end %>
 <% end %>
-<div><%= react_component("HelloWorld") %></div> 
-<div><%= react_component("Clock") %></div> 
+<h2><%= react_component("HelloWorld") %></h2>
+<h2><%= react_component("Clock") %></h2>
 <div style="margin-bottom:10px"><%=render partial: 'common/form' %></div>
 <button class="btn btn-primary"  data-toggle="modal" data-target="#modal-sa">
 定期的
