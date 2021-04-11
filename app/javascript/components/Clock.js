@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 var today = new Date();
-var todayDay = today.getMonth() + 1
 var tomonth = today.getMonth() + 1
 var todate = today.getDate();
 var dayOfWeekStr = ["日", "月", "火", "水", "木", "金", "土"][today.getDay()];
@@ -11,7 +10,6 @@ class Clock extends React.Component{
     super(props);
     this.state = {
       date: new Date(),
-      thisday:""
     };
   }
 
@@ -28,17 +26,14 @@ class Clock extends React.Component{
 
   tick() {
     this.setState({
-      date: new Date(),
-      tomonth:  todayDay,
-      today:todate,
-      weekday:dayOfWeekStr
+      date: new Date()
     });
   }
 
   render() {
     return (
       <div>
-        <div>今の時刻: {this.state.tomonth}/{this.state.today}({this.state.weekday}) {this.state.date.toLocaleTimeString()}</div>
+        <div>今の時刻: {tomonth}/{todate}({dayOfWeekStr}) {this.state.date.toLocaleTimeString()}</div>
       </div>
     );
   }
