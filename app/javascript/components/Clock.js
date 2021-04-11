@@ -38,7 +38,7 @@ class Clock extends React.Component{
   render() {
     return (
       <div>
-        <div>今の時刻: {this.state.tomonth}月{this.state.today}日({this.state.weekday}) {this.state.date.toLocaleTimeString()}</div>
+        <div>今の時刻: {this.state.tomonth}/{this.state.today}({this.state.weekday}) {this.state.date.toLocaleTimeString()}</div>
       </div>
     );
   }
