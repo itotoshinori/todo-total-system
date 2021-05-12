@@ -3,8 +3,8 @@
 <% if @todos.present? %>
 <% account=Account.joins(:todo).where(registrationdate:@today).where('todos.user_id = ?', @userid) %>
 <% finish=Todo.where(finishday:@today).where('todos.user_id = ?', @userid) %>
-<%= link_to "仕掛", todos_path, {class: "btn btn-primary"} %>
-<%= link_to "新規", new_todo_path, {class: "btn btn-primary"} %> 
+<%= link_to "新規", new_todo_path, {class: "btn btn-primary"} %>
+<%= link_to "仕掛", todos_path, {class: "btn btn-primary"} %> 
 <%#= link_to "完了除仕掛", "/todos?unfinished=true", {class: "btn btn-primary"} %>
 <%= link_to "完了", "/todos?finished=true", {class: "btn btn-primary"} %>
 <br>本日使用額：<%= account.sum(:amount).to_s(:delimited, delimiter: ',') %>円 終了タスク：<%= finish.count(:finishday) %>件</b>
