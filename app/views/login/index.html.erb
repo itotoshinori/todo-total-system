@@ -6,7 +6,7 @@
     <%= label_tag :パスワード %><br>
     <%= password_field_tag :password %><br><br>
     <%= label_tag :画像のテキストを入力して下さい %><br>
-    <%= password_field_tag 'image_word' %><br><br>
+    <%= text_field_tag 'image_word' %><br><br>
     <%= hidden_field_tag 'word', @num %>
     <img src="/image_auth/<%= @image %>"><br><br>
     <%= submit_tag "実行" %>
