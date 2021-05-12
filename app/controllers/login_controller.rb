@@ -2,7 +2,7 @@ class LoginController < ApplicationController
   before_action :url_set, only: [:login]
 
   def index
-    @num = rand(0..5)
+    @num = rand(0..2)
     @imageauth = ImageAuth.new(@num)
     @image = @imageauth.auth_dis
   end
