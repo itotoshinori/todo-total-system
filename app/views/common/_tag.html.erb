@@ -22,6 +22,12 @@
       <input class="input_link" id="input3" type="text" name="text2" value=""><br>
       <button id="imagelinkbutton" type="button">画像リンクタグ追加</button>
     </div>
+    <div>
+      <label>テキスト強調</label><br>
+      <input class="input_link" id="input4" type="text" name="text2" value=""><br>
+      <button id="textstrongbutton" type="button">テキスト強調タグ追加</button>
+      <br />例<div class="up_down_line">テキスト強調</div>
+    </div>
   </div>
 </div>
 <script type="text/javascript">
@@ -53,6 +59,17 @@
         alert('画像リンクを入力して下さい');
       } else {
         $('#body').focus().val(body + link);
+      } 
+  });
+  $("#textstrongbutton").click(function () {
+      var input4 = $('#input4').val();
+      var body = $('#body').val();
+      $('#input4').val("");
+      text = "<div class='up_down_line'>" + input4 + "</div>";
+      if (!input4) {
+        alert('テキストを入力して下さい');
+      } else {
+        $('#body').focus().val(body + text);
       } 
   });
   $("#bodyclear").click(function () {

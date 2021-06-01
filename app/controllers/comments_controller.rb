@@ -7,6 +7,10 @@ class CommentsController < ApplicationController
     @comment=Comment.new(comment_params)
     blog_id = @comment.blog_id
     if @comment.save
+      cookies[:commnt_name] = {:value => @comment.name, :expires => 5.days.from_now }
+      cookies[:commnt_email] = {:value => @comment.email, :expires => 5.days.from_now }
+      cookies[:commnt_url] = {:value => @comment.url, :expires => 5.days.from_now }
+      flash[:success]="コメントが新規登録されました"
       if cookies[:userid].blank?
         @chatwork = InquiryChatwork.new
         @chatwork.push_chatwork_message(@comment, 1, @url)

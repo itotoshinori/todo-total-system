@@ -80,3 +80,11 @@
   text-decoration: line-through;
 }
 
+.up_down_line {
+  color: #364e96;/*文字色*/
+  padding: 0 0 0 0.5em;/*上下の余白*/
+  border-top: solid 3px #364e96;/*上線*/
+  border-bottom: solid 3px #364e96;/*下線*/
+  font-size:25px;
+}
+
