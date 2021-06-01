@@ -20,7 +20,7 @@ gem 'faraday'
 gem 'react-rails'
 gem 'webpacker'
 gem 'rack-user_agent'
-gem "jquery-rails", '4.3.1'
+#gem "jquery-rails", '4.3.1'
 #gem 'rspec-rails'
 
 
