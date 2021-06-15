@@ -33,11 +33,7 @@
   <%= link_to "編集","/todos/#{form.id}/edit", {class: "btn btn-primary button2"} %>　
   </div>
   <div class="form-group">
-    <% if form.finishday.blank? %>
-      <%= button_to "完了登録", todos_finished_path, { method: :get, params: {id: form.id,baction:1},class: "btn btn-primary button2" } %>
-    <% else %>
-      <%= button_to "完了取消", todos_finished_path, { method: :get, params: {id: form.id,baction:2},class: "btn btn-primary button2" } %>
-    <% end %>
+      <%= link_to "詳細","/todos/#{form.id}/", {class: "btn btn-primary button2"} %>　
   </div>
 </div><br />
 

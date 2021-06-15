@@ -32,16 +32,10 @@ class CategoriesController < ApplicationController
   def index_detail
     @category_title =  params[:category]
     @index_details = Todo.joins(:categories).where(categories: { category_id: @category_title },user_id:@userid).order(term:"DESC")
-    
-    #@index_details = Category.joins(:todo).where(category_id: @category).order(term:"DESC")
   end
 
   def detail_lists
     @category_title = params[:category]
     @index_details = Todo.joins(:categories).where(categories: { category_id: @category_title },user_id:@userid).order(term:"DESC")
-    #Owner.joins(:cats).where(cats: { name: "モモ" }, name: "田中")
-    
-    #@index_details = Category.joins(:todo).where(category_id: @category).order(term:"DESC")
-    #@index_details = Category.joins(:todo).where(category_id: @category).where(todo: {user_id: @userid}).order(term:"DESC")
   end
 end
