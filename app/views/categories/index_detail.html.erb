@@ -1,4 +1,4 @@
-<h3>分類：<%= @category %></h3>
+<h3>分類：<%= @category_title %></h3>
 <table class="table1" align="left">
     <thead>
       <tr>
@@ -9,20 +9,18 @@
     </thead>
     <tbody>
     <% @index_details.each do |form| %>
-      <% if Todo.find(form.todo_id).user_id == @userid %>
       <tr>
-        <% todo_title = mojiseigen(form.todo.title,8) %>
-        <% todo_term = monthdayyoubi(form.todo.term) %>
+        <% todo_title = mojiseigen(form.title,8) %>
+        <% todo_term = monthdayyoubi(form.term) %>
         <td data-label = "内容" style="text-align: left;">
-        <% if form.todo.finishday.present? %>
+        <% if form.finishday.present? %>
           <span class="badge badge-pill badge-info">完</span>
         <% end %>
-        <%= link_to todo_title, "/todos/#{form.todo_id}" %></td>
+        <%= link_to todo_title, "/todos/#{form.id}" %></td>
         <td data-label = "期限"><%= todo_term %></td>
-        <td><%= button_to "編", edit_todo_path(form.todo_id), { method: :get, params: {id: form.todo_id,baction:1},class:"btn btn-success" } %></td>
+        <td><%= button_to "編", edit_todo_path(form.id), { method: :get, params: {id: form.id,baction:1},class:"btn btn-success" } %></td>
       </tr>
       <% end %>
-    <% end %>
     </tbody>
 </table>
 <p><%= link_to("一覧に戻る",session[:url]) if session[:url]%></p>

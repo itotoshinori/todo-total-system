@@ -1,29 +1,29 @@
-<h3>分類：<%= @category %></h3>
+<h3>分類：<%= @category_title %></h3>
   <% @index_details.each do |form| %>
     <table>
     <tr><td>
-    ■名　称：<%= form.todo.title %></td></tr>
+    ■名　称：<%= form.title %></td></tr>
     <tr><td>
     ■期　限：
-      <%= dateweekday(form.todo.term) %>(<%=weekdate(form.todo.term) %>)
-      <% if form.todo.starttime.present? %>
-        <% times = form.todo.starttime %>
+      <%= dateweekday(form.term) %>(<%=weekdate(form.term) %>)
+      <% if form.starttime.present? %>
+        <% times = form.starttime %>
         <%= times.strftime("%H:%M") %>
       <% end %><br>
     </td></tr>
     <tr><td>
     ■完了日：
-    <% if form.todo.finishday.present? %>
-      <%= dateweekday(form.todo.finishday) %>(<%=weekdate(form.todo.finishday) %>)
+    <% if form.finishday.present? %>
+      <%= dateweekday(form.finishday) %>(<%=weekdate(form.todo.finishday) %>)
     <% else %>
       未完了
     <% end %>
     </td></tr>
     <tr><td>
-    ■詳　細<br><%=simple_format(form.todo.body) %>
+    ■詳　細<br><%=simple_format(form.body) %>
     <div style="display:inline-flex">
-    <%= link_to "詳細","/todos/#{form.todo.id}/", {class: "btn btn-primary button2"} %>　
-    <%= link_to "編集","/todos/#{form.todo.id}/edit", {class: "btn btn-success button2"} %>
+    <%= link_to "詳細","/todos/#{form.id}/", {class: "btn btn-primary button2"} %>　
+    <%= link_to "編集","/todos/#{form.id}/edit", {class: "btn btn-success button2"} %>
     </div>
     </td></tr>
 </td></tr>
