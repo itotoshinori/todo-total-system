@@ -1,28 +1,49 @@
 <h3>分類：<%= @category %></h3>
-<table class="table1" align="left">
-    <thead>
-      <tr>
-        <th scope="col" style="width:250px">内容</th>
-        <th style="width:15px">期限</th>
-        <th style="width:10px">詳細</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @index_details.each do |form| %>
-      <tr>
-        <% todo_title = mojiseigen(form.title,8) %>
-        <% todo_term = monthdayyoubi(form.term) %>
-        <td data-label = "内容" style="text-align: left;">
-        <% if form.finishday.present? %>
-          <span class="badge badge-pill badge-info">完</span>
-        <% end %>
-        <%= link_to todo_title, "/todos/#{form.id}" %></td>
-        <td data-label = "期限"><%= todo_term %></td>
-        <td><%= button_to "編", edit_todo_path(form.id), { method: :get, params: {id: form.id,baction:1},class:"btn btn-success" } %></td>
-      </tr>
-      <% end %>
-    </tbody>
+
+<% @index_details.each do |form| %>
+    <table>
+    <tr><td width="120" valign="top">
+■名　称　：</td><td><%= form.title %></td></tr>
+<tr><td valign="top">
+■期　限　：</td>
+<td>
+<%= dateweekday(form.term) %>(<%=weekdate(form.term) %>)
+<% if form.starttime.present? %>
+    <% times=form.starttime %>
+    <%= times.strftime("%H:%M") %>
+<% end %><br>
+</td></tr>
+<tr><td>
+■完了日　：</td><td>
+<% if form.finishday.present? %>
+  <%= dateweekday(form.finishday) %>(<%=weekdate(form.finishday) %>)
+<% else %>
+未完了
+<% end %>
+</td></tr>
+<tr><td>
+<% kei=Account.where(todo_id:form.id).sum(:amount) %>
+■金　額　：</td><td><%= kei.to_s(:delimited, delimiter: ',') %></td></tr>
+<tr><td  colspan="2" width="610">
+■詳　細<br><%=simple_format(form.body) %>
+</td></tr>
 </table>
+<div style="display:inline-flex">
+  <div class="form-group">
+  <%= link_to "編集","/todos/#{form.id}/edit", {class: "btn btn-primary button2"} %>　
+  </div>
+  <div class="form-group">
+    <% if form.finishday.blank? %>
+      <%= button_to "完了登録", todos_finished_path, { method: :get, params: {id: form.id,baction:1},class: "btn btn-primary button2" } %>
+    <% else %>
+      <%= button_to "完了取消", todos_finished_path, { method: :get, params: {id: form.id,baction:2},class: "btn btn-primary button2" } %>
+    <% end %>
+  </div>
+</div><br />
+
+<hr class="line">
+      
+    <% end %>
 <p><%= link_to("一覧に戻る",session[:url]) if session[:url]%></p>
 <% session[:url]=request.url %>
 
