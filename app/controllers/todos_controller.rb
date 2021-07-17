@@ -199,6 +199,19 @@ class TodosController < ApplicationController
     end
     redirect_to request.referer
   end
+
+  def ajax_update
+    # topページにある「data(入力フォーム)」のパラメーターを@textに代入
+    id =params[:id] 
+    todo = Todo.find(id)
+    todo.finished = true
+    todo.finishday = Date.today
+    todo.title = "🚯#{todo.title}"
+    todo.starttime = nil
+    todo.finishtime = nil
+    todo.save
+    @message = "テレビ番組を中止にしました"
+  end
   
   def show
     begin

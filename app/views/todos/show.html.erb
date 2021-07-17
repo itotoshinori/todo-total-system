@@ -55,8 +55,19 @@
       <%= button_to "完了取消", todos_finished_path, { method: :get, params: {id: @todo.id,baction:2},class: "btn btn-primary button2" } %>
     <% end %>
   </div>
-</div><br />
-
+  </div>
+  <br />
+  <!--  入力フォームをform_withで作成  -->
+  <div id="ajax-request">
+    <div id="ajax1"></div>
+      <!-- form_withのパスを「ajax_updateアクション」に紐付ける -->
+      <%= form_with url: todos_ajax_update_path do |f| %>
+      <!--  入力フォーム  -->
+        <%= hidden_field_tag :id, @todo.id %>
+        <%= f.submit 'テレビ番組視聴中止処理' %>
+      <% end %>
+  </div>
+  <br />
 <hr class="line">
 ■会計新規
 <% @account=Account.new %>
@@ -95,6 +106,8 @@
   </span>&nbsp;
   <%= link_to image_tag("https://s.yimg.jp/images/calendar/yc_btn_01.gif"),"https://calendar.yahoo.co.jp/?V=60&TITLE=#{title_convert}&ST=#{convert_day}T#{convert_time}&DUR=0130", target: "_new" %>
 <% end %>
+<!--  デフォルトで表示されている内容  -->
+
 
 <p><%= link_to("一覧に戻る",session[:url]) if session[:url]%></p>
 

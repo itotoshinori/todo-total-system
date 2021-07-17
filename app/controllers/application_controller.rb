@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
   def unless_admin_user
     if @current_user.present?
       redirect_to('/login/index') if @current_user.id != 1
+      #   redirect_to('/login/index') if @current_user.admin == false 
     end
   end
 
