@@ -27,7 +27,7 @@ class TargetsController < ApplicationController
   private
   def setting
     @todo = Todo.new
-    @date = ( @date.to_date - 200 ).end_of_month
+    @date = ( @date.to_date - 180 ).end_of_month
     @targets = [] 
   end
 end

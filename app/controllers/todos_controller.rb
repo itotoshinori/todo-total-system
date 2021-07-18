@@ -209,8 +209,11 @@ class TodosController < ApplicationController
     todo.title = "🚯#{todo.title}"
     todo.starttime = nil
     todo.finishtime = nil
-    todo.save
-    @message = "テレビ番組を中止にしました"
+    if todo.save
+      @message = "テレビ番組視聴を中止にしました"
+    else
+      @message = "テレビ番組視聴を中止処理に失敗しました"
+    end
   end
   
   def show
