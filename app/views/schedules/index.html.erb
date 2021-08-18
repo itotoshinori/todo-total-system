@@ -1,5 +1,4 @@
 <% provide(:title, "カレンダー") %>
-  
   <% @first_day = @date.beginning_of_month %>
   <% @last_day = @date.end_of_month %>
   <% today = Date.today %>
@@ -35,18 +34,25 @@
     <% idday = convert_day(day+1) %>
   <% end  %>
   <div id=<%= idday %>><%=monthday(day) %>(<%=weekdate(day) %>)
-  <%= link_to '+', controller: "todos", action: "new", gday:day,section:1  %>
-  <%#= link_to "+", "new", gday:day %></div>
+    <%= link_to '+', controller: "todos", action: "new", gday:day,section:1  %>
+  </div>
   </td>
 <td style="text-align: left;">
-  <% dayevent=@event.where(term:day).order(:starttime) %>
+  <% dayevent=@events.where(term:day).order(:starttime) %>
   <% dayevent.each do |dayev| %>
     <% times=dayev.starttime %>
-    <%=times.strftime("%H:%M") %>-
+    <% if times.present? %>
+        <%=times.strftime("%H:%M") %>-
+    <% end %>
     <% if dayev.body.present? %>
       🔗
     <% end %>
-    <%=link_to mojiseigen(dayev.title,18),"/todos/#{dayev.id}" %>
+    <% title =mojiseigen(dayev.title,18) %>
+    <% if dayev.finished %>
+      <%=link_to title,"/todos/#{dayev.id}" , {class: "font-silver"}%>
+    <% else %>
+      <%=link_to title,"/todos/#{dayev.id}" %>
+    <% end %>
     <br>
   <% end %></td></tr>
 <% end %>

@@ -6,7 +6,11 @@ class SchedulesController < ApplicationController
   before_action :place_setting, only: [:index]
 
   def index
-    @event = Todo.where('starttime IS NOT NULL').where(user_id:@userid)
+    if params[:important] == "true"
+      @events = Todo.where('title LIKE ?', '%🚩%').where(user_id:@userid)
+    else
+      @events = Todo.where('starttime IS NOT NULL').where(user_id:@userid)
+    end
     kubun = params[:kubun]
     if kubun.present?
       @date = params[:lday].to_date
