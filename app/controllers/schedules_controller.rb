@@ -8,6 +8,7 @@ class SchedulesController < ApplicationController
   def index
     if params[:important] == "true"
       @events = Todo.where('title LIKE ?', '%🚩%').where(user_id:@userid)
+      @important = true
     else
       @events = Todo.where('starttime IS NOT NULL').where(user_id:@userid)
     end

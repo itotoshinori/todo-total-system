@@ -7,12 +7,24 @@
   <table >
   <% @datedown=(@first_day-1).beginning_of_month %>
   <tr>
-  <td><%= button_to"←", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@datedown,kubun:"1"}} %></td>
+  <td>
+  <% if @important %>
+    <%= button_to "←", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@datedown,kubun:"1",important:true}} %>
+  <% else %>
+    <%= button_to"←", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@datedown,kubun:"1"}} %>
+  <% end %>
+  </td>
   <td><div style="padding : 10px ;"><strong><%= nengetu(@first_day) %>分スケジュール</strong></div></td>
   <% @dateup=(@last_day+1).beginning_of_month %>
-  <td><%= button_to"→", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@dateup,kubun:"2"}} %></td>
+  <td>
+  <% if @important %>
+    <%= button_to"→", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@dateup,kubun:"2",important:true}} %>
+  <% else %>
+    <%= button_to"→", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@dateup,kubun:"2"}} %>
+  <% end %>
+  </td>
   </tr></table>
-  <table class="table1">
+  <table class="table1">  
 <tr><th>月日</th><th>イベント名</th></tr> 
 <% (@first_day..@last_day).each do |day| %>
 <% if day==today %>
@@ -60,14 +72,21 @@
 <table>
   <% @datedown=(@first_day-1).beginning_of_month %>
   <tr>
-  <td><%= button_to "←", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@datedown,kubun:"1"}} %></td>
+  <td>
+  <% if @important %>
+    <%= button_to "←", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@datedown,kubun:"1",important:true}} %>
+  <% else %>
+    <%= button_to"←", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@datedown,kubun:"1"}} %>
+  <% end %>
+  </td>
   <td><div style="padding : 10px ;"><strong><%= nengetu(@first_day) %>分スケジュール</strong></div></td>
   <% @dateup=(@last_day+1).beginning_of_month %>
-  <td><%= button_to"→", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@dateup,kubun:"2"}} %></td>
-  </tr></table>
-<% if @datekakuni.present? %>
-  <% session[:url]=request.url + "#" + convert_day(today) %>
-<% else %>
-  <% session[:url]=request.url %>
-<% end %>
+  <td>
+  <% if @important %>
+    <%= button_to"→", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@dateup,kubun:"2",important:true}} %>
+  <% else %>
+    <%= button_to"→", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@dateup,kubun:"2"}} %>
+  <% end %>
+  </td>
+</table>
 <%=render partial: 'common/form' %>
