@@ -142,5 +142,13 @@ module ApplicationHelper
     kekka=HolidayJapan.check(Date.new(d.year,d.month,d.day))
     kekka
   end
+  def convertday()
+    today = Date.today
+    if today.day == 1
+      convertday = "0000"
+    else
+      convertday = convert_day(today)
+    end  
+  end
 end
 

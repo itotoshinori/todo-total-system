@@ -77,13 +77,9 @@
               <li style="border-top: solid 1px #bbbbbb;"><a href="/">ホーム</a></li>
               <li><a href="/todos/">Todo</a></li>
               <% if cookies[:userid].present? %>
-                <% if today.day == 1 %>
-                  <% convertday = "0000" %>
-                <% else %>
-                  <% convertday = convert_day(today) %>
-                <% end %>  
-                <li ><%= link_to "スケジュール",schedules_path + "#" + convertday %></li>
-                <li ><%= link_to "重要スケジュール","/schedules?important=true" + "#" + convertday %></li>
+                
+                <li><%= link_to "スケジュール",schedules_path + "#" + convertday() %></li>
+                <li><%= link_to "重要スケジュール","/schedules?important=true" + "#" + convertday() %></li>
                 <li><%= link_to "分類別",categories_path %></li>
                 <li><%= link_to "削除対象一覧",targets_path %></li>
                 <li><a href="/totalizations">会計集計表</a></li>
