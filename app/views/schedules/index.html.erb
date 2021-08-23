@@ -8,13 +8,11 @@
   <% @datedown=(@first_day-1).beginning_of_month %>
   <tr>
   <td>
-  
-  <% if @important %>
-    <%= button_to "←", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@datedown,kubun:"1",important:true}} %>
-  <% else %>
-    <%= button_to"←", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@datedown,kubun:"1"}} %>
-  <% end %>
-  
+    <% if @important %>
+      <%= button_to "←", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@datedown,kubun:"1",important:true}} %>
+    <% else %>
+      <%= button_to"←", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@datedown,kubun:"1"}} %>
+    <% end %>
   </td>
   <td><div style="padding : 10px ;"><strong><%= nengetu(@first_day) %>分スケジュール</strong></div></td>
   <% @dateup=(@last_day+1).beginning_of_month %>
@@ -83,7 +81,7 @@
 <% end %>
 </table>
 <table>
-  <% @datedown=(@first_day-1).beginning_of_month %>
+  <% @datedown=(@first_day-1).beginning_of_month %><% @dateup=(@last_day+1).beginning_of_month %>
   <tr>
   <td>
   <% if @important %>
@@ -93,7 +91,6 @@
   <% end %>
   </td>
   <td><div style="padding : 10px ;"><strong><%= nengetu(@first_day) %>分スケジュール</strong></div></td>
-  <% @dateup=(@last_day+1).beginning_of_month %>
   <td>
   <% if @important %>
     <%= button_to"→", {controller: 'schedules', action: 'index'}, {method: :get, params: {lday:@dateup,kubun:"2",important:true}} %>

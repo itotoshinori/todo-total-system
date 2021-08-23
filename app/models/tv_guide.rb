@@ -1,19 +1,22 @@
 class Tv_guide
   def schedule_add(userid)
-    target_list = ["路線バス","松本清張","織田信長","豊臣秀吉","平家","源氏","歴史探偵","黒澤明",
-    "水曜日のダウンタウン","サッカー 日本代表 中継","日本代表侍ジャパン","新庄剛志","金村義明","太川陽介","東京オリンピック　野球",
+    target_list = 
+    ["路線バス","松本清張","織田信長","豊臣秀吉","平家","源氏","歴史探偵","黒澤明",
+    "青天を衝（つ）け 【作】大森美香","サッカー 日本代表 中継","日本代表侍ジャパン","新庄剛志","金村義明","太川陽介",
     "江本孟紀","中田敦彦","武田邦彦","池上彰","堀江貴文","野村克也",
-    "青春１８","奄美大島","石垣島"] 
+    "奄美大島","石垣島"] 
     main_titles = []
     tV_program = []
-    target_list.each do |target|  
+    target_list.each do |target| 
       target_url = URI.encode_www_form(keyword: target)
       url = "https://www.tvkingdom.jp/schedulesBySearch.action?stationPlatformId=1&condition.#{target_url}"
+      #url = "https://www.tvkingdom.jp/schedulesBySearch.action?stationPlatformId=0&condition.#{target_url}"
       # urlにアクセスしてhtmlを取得する
       html = URI.open(url).read
       doc = Nokogiri::HTML.parse(html) 
       tv_title = doc.css('div.utileList').css('a')
       detail = doc.css('p.utileListProperty')
+      tv_chanel = doc.css("dd")
       text_an = []
       doc.css('a').each do |anchor|
         text_an.push([anchor.text,anchor[:href]]) if anchor.to_s.include?("/schedule/")
