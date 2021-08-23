@@ -29,7 +29,7 @@ class TodosController < ApplicationController
       @todos = @todos.includes(:accounts).where(user_id:@userid).order(:term).paginate(page: params[:page], per_page: 25).order(created_at: "ASC")
       @kubun = 1
     end
-    if cookies[:time_check11].blank? and @userid.to_s == "1" #and request.os == 'Android'
+    if cookies[:time_check11].blank? and @userid.to_s == "1"
       #begin
         #url = "https://www.udemy.com/ja"
         #url = "http://titonet384.sakura.ne.jp/kokuho/"
