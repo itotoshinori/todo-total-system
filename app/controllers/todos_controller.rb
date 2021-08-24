@@ -29,7 +29,7 @@ class TodosController < ApplicationController
       @todos = @todos.includes(:accounts).where(user_id:@userid).order(:term).paginate(page: params[:page], per_page: 25).order(created_at: "ASC")
       @kubun = 1
     end
-    if cookies[:time_check11].blank? and @userid.to_s == "1"
+    #if cookies[:time_check11].blank? and @userid.to_s == "1"
       #begin
         #url = "https://www.udemy.com/ja"
         #url = "http://titonet384.sakura.ne.jp/kokuho/"
@@ -47,12 +47,12 @@ class TodosController < ApplicationController
         #udemy_check = false
       #end
       begin
-        #@tv_schedule2 = Tv_guide.new.schedule_add(@userid)
+        @tv_schedule2 = Tv_guide.new.schedule_add(@userid)
         cookies[:time_check11] = { :value => "check", :expires => 360.minutes.from_now } 
       rescue => exception
-        #@tv_schedule2 = ["ERROR","TV番組取得時エラーがでました"]
+        @tv_schedule2 = ["ERROR","TV番組取得時エラーがでました"]
       end  
-    end
+    #end
     #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
     #@tv_schedule2 = Tv_guide.new.schedule_add(@userid)
   end
