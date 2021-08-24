@@ -48,7 +48,7 @@ class TodosController < ApplicationController
       #end
       begin
         @tv_schedule2 = Tv_guide.new.schedule_add(@userid)
-        cookies[:time_check11] = { :value => "check", :expires => 360.minutes.from_now } 
+        cookies[:time_check12] = { :value => "check", :expires => 360.minutes.from_now } 
       rescue => exception
         @tv_schedule2 = ["ERROR","TV番組取得時エラーがでました"]
       end  
