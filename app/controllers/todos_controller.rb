@@ -30,7 +30,7 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     if cookies[:time_check12].blank? and @userid.to_s == "1"
-      ##begin
+      #begin
         #url = "https://www.udemy.com/ja"
         #url = "http://titonet384.sakura.ne.jp/kokuho/"
         #title = "Udemyバーゲン購入検討"
@@ -48,17 +48,6 @@ class TodosController < ApplicationController
       #end
       begin
         @tv_schedule2 = Tv_guide.new.schedule_add(@userid)
-        #昨日以前のキャンセル登録したデータを自動削除
-        todo_destroys = Todo.where("term < ?", @date).where("title LIKE ?", "🚯%")
-        if todo_destroys.present?
-          todo_destroys.each do | todo_destroy |
-          if todo_destroys.find(todo_destroy.id).delete
-            flash[:success] = "🚯印のものを一括削除に成功しました"
-          else
-            flash[:warninng] = "🚯印のものを全部もしくは一部の一括削除に成功しました" 
-          end
-        end
-      end
         #クッキー更新
         cookies[:time_check12] = { :value => "check", :expires => 360.minutes.from_now } 
       rescue => exception
