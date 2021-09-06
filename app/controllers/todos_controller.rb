@@ -52,6 +52,17 @@ class TodosController < ApplicationController
         cookies[:time_check12] = { :value => "check", :expires => 360.minutes.from_now } 
       rescue => exception
         @tv_schedule2 = ["ERROR","TV番組取得時エラーがでました"]
+      end
+    else
+      todo_destroys = Todo.where("term <= ?", @date).where("title LIKE ?", "🚯%")
+      if todo_destroys.present?
+        todo_destroys.each do | todo_destroy |
+          if todo_destroys.find(todo_destroy.id).delete
+            flash[:success] = "🚯印のものを一括削除に成功しました"
+          else
+            flash[:warninng] = "🚯印のものを全部もしくは一部の一括削除に成功しました" 
+          end
+        end
       end  
     end
     #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
