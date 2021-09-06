@@ -55,7 +55,8 @@ class TodosController < ApplicationController
         @tv_schedule2 = ["ERROR","TV番組取得時エラーがでました"]
       end
     else
-      todo_destroys = Todo.where("term <= ?", @date).where("title LIKE ?", "🚯%")
+      #テレビ番組予約取消したもので昨日以前のものを削除　番組取込しない時に実行（同時するとエラーが起こる）
+      todo_destroys = Todo.where("term <= ? and title LIKE ?", @date,"🚯%")
       if todo_destroys.present?
         todo_destroys.each do | todo_destroy |
           if todo_destroys.find(todo_destroy.id).delete
