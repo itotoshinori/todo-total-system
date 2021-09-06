@@ -30,7 +30,7 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     if cookies[:time_check12].blank? and @userid.to_s == "1"
-      #begin
+      ##begin
         #url = "https://www.udemy.com/ja"
         #url = "http://titonet384.sakura.ne.jp/kokuho/"
         #title = "Udemyバーゲン購入検討"
@@ -64,7 +64,7 @@ class TodosController < ApplicationController
       rescue => exception
         @tv_schedule2 = ["ERROR","TV番組取得時エラーがでました"]
       end  
-    end
+    #end
     #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
     #@tv_schedule2 = Tv_guide.new.schedule_add(@userid)
   end
