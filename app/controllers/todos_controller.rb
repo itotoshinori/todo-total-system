@@ -53,7 +53,7 @@ class TodosController < ApplicationController
       rescue => exception
         @tv_schedule2 = ["ERROR","TV番組取得時エラーがでました"]
       end  
-    #end
+    end
     #@tv_schedule = Tv_schedule.new.schedule_add(@userid)
     #@tv_schedule2 = Tv_guide.new.schedule_add(@userid)
   end
