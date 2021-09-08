@@ -56,8 +56,7 @@ class TodosController < ApplicationController
       end
     else
       #テレビ番組予約取消したもので昨日以前のものを削除　番組取込しない時に実行（同時するとエラーが起こる）
-      yesterday = @date.since(1.days)
-      todo_destroys = Todo.where("term <= ? and title LIKE ?", yesterday, "🚯%")
+      todo_destroys = Todo.where("term < ? and title LIKE ?", @date,"🚯%")
       if todo_destroys.present?
         todo_destroys.each do | todo_destroy |
           if todo_destroys.find(todo_destroy.id).delete
