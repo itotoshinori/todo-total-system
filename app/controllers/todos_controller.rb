@@ -30,23 +30,7 @@ class TodosController < ApplicationController
       @kubun = 1
     end
     if cookies[:time_check12].blank? and @userid.to_s == "1"
-    #if @userid.to_s == "1"
-      #begin
-        #url = "https://www.udemy.com/ja"
-        #url = "http://titonet384.sakura.ne.jp/kokuho/"
-        #title = "Udemyバーゲン購入検討"
-        #title = "関西歴史建造物" テスト用
-        #todo_count = Todo.where('title like ?',"%#{title}%").where(term:@date).count
-        #if todo_count == 0
-          #@scrap = Scrap_check.new
-          #@udemy_check = @scrap.check(@userid,url,title,"セール","対象コースが","バーゲン")
-          #flash[:success] = "#{title}が新規登録されました" if @udemy_check
-        #else
-          #flash[:success] = "Udemyの対象がありません"
-        #end
-      #rescue => exception
-        #udemy_check = false
-      #end
+    #if @userid.present?
       begin
         @tv_schedule2 = Tv_guide.new.schedule_add(@userid)
         #クッキー更新
