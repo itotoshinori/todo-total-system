@@ -4,8 +4,8 @@ class InquiryChatwork
   require 'json'
   #git hubでの編集要
   def push_chatwork_message(message,num,url)
-    chatwork_room_id = '197330662'
-    chatwork_api_token = '74bfe242711fcf573a2379c183b250fb'
+    chatwork_room_id = ''
+    chatwork_api_token = ''
     uri = URI.parse("https://api.chatwork.com/v2/rooms/#{chatwork_room_id}/messages")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
