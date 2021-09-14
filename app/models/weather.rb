@@ -3,7 +3,7 @@ class Weather < Weatheritem
   require "open-uri"
   require 'date'
   require 'config'
-  API_KEY = "38ccd939d777d6a1279227696ad2a4bf"
+  API_KEY = ""
   BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
   
   def initialize(placecode)
