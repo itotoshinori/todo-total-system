@@ -6,7 +6,6 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/js/app.js',
                 'resources/ts/index.tsx',
             ],
             refresh: true,
