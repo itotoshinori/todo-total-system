@@ -7,6 +7,8 @@
     <title>Laravel with React and Vite</title>
     @viteReactRefresh
     @vite('resources/ts/index.tsx')
+    @vite('resources/css/app.css')
+    @vite('resources/sass/app.scss')
 </head>
 
 <body>
