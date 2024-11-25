@@ -8,7 +8,7 @@ import { useAuth } from '../../../hooks/AuthContext'
 const TaskList: React.FC = () => {
     const { data: tasks, status } = useTasks()
     const { isAuth } = useAuth()
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     if (!isAuth) {
         navigate('/login');
     }
@@ -22,7 +22,7 @@ const TaskList: React.FC = () => {
     return (
         <div className="inner">
             <ul className="task-list">
-                {tasks?.map((task: Task) => (
+                {tasks.map((task: Task) => (
                     <TaskItem task={task} />
                 ))}
             </ul>

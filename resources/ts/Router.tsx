@@ -4,7 +4,7 @@ import NotFound from './pages/NotFound';
 import Task from './pages/tasks/index';
 import Login from './pages/login/index';
 import Help from './pages/help/index';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { useLogout, useUser } from './queries/AuthQuery';
 import { useAuth } from './hooks/AuthContext';
 
@@ -12,7 +12,6 @@ const Router: React.FC = () => {
     const logout = useLogout()
     const { isAuth, setIsAuth } = useAuth()
     const { isLoading, data: authUser } = useUser()
-    const navigate = useNavigate();
     useEffect(() => {
         if (authUser) {
             setIsAuth(true)

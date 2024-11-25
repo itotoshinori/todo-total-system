@@ -17,7 +17,7 @@ const LoginPage = () => {
                 <div className="login-panel">
                     <form onSubmit={handleLogin}>
                         <div className="input-group">
-                            <label>email</label>
+                            <label>メールアドレス</label>
                             <input
                                 type="email"
                                 className="input"
