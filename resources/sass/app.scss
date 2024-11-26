@@ -111,9 +111,11 @@ html {
         outline: none;
         border: solid 3px #d7d2cd;
         margin-right: 10px;
+        margin-top: 20px;
     }
 
     .btn {
+        margin-top: 20px;
         width: 20%;
     }
 
@@ -240,6 +242,9 @@ html {
     background: #201402;
     margin: 0;
     padding: 10px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
 
     a {
         color: #fff;
@@ -324,10 +329,10 @@ ul.tag-list {
 .login-page {
     background: #f9f3ee;
     width: 100vw;
-    height: 100vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    padding-top: 100px;
     align-items: center;
 
     .links {

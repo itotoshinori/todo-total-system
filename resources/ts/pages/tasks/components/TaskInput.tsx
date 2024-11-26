@@ -17,7 +17,7 @@ const TaskInput: React.FC = () => {
                     <input
                         type="text"
                         className="input"
-                        placeholder="TODOを入力して。"
+                        placeholder="TODOを新規入力"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />

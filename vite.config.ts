@@ -14,4 +14,15 @@ export default defineConfig({
         }),
         react(),
     ],
+    css: {
+        preprocessorOptions: {
+            scss: {
+                api: "modern-compiler",
+            },
+            // sassの場合は
+            // sass: {
+            //   api: "modern-compiler",
+            // },
+        },
+    },
 });

@@ -6,7 +6,7 @@ const index = () => {
     return (
         <div className="align-center">
             <TaskInput />
-            <h1>タスク</h1>
+            <h1>タスク一覧</h1>
             <TaskList />
         </div>
     )
