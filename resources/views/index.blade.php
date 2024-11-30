@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel On React</title>
+    <title>タスク管理システム</title>
     @viteReactRefresh
     @vite('resources/ts/index.tsx')
     @vite('resources/css/app.css')
