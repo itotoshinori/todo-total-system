@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>タスク管理システム</title>
+    <title>タスク管理</title>
     @viteReactRefresh
     @vite('resources/ts/index.tsx')
     @vite('resources/css/app.css')
